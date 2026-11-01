@@ -66,6 +66,8 @@ function jsonLd(config) {
     url: "https://j4tmr.github.io/cheapest-deepseek-plan/",
     sameAs: `https://github.com/${config.repository}`,
     license: "https://opensource.org/licenses/MIT",
+    dateModified: "2026-10-30",
+    keywords: ["DeepSeek Flash", "OpenCode Go", "Command Code GOAT", "WorkBuddy", "token", "撞墙"],
     creator: { "@type": "Organization", name: config.name }
   };
   const faq = {
@@ -109,15 +111,31 @@ export function renderIndex({ config, origin }) {
   <meta property="og:url" content="${escapeHtml(siteUrl)}">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="${escapeHtml(origin)}/social.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="70 元 DeepSeek Flash 套餐 token 对比">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${escapeHtml(origin)}/social.png">
+  <meta name="twitter:image:alt" content="70 元 DeepSeek Flash 套餐 token 对比">
+  <meta name="author" content="4qin">
+  <link rel="author" href="https://www.4qin.com/">
+  <link rel="preconnect" href="https://img.v2dao.site">
   <link rel="stylesheet" href="styles.css">
   ${jsonLd(config)}
 </head>
 <body>
   <a class="skip" href="#plans">跳到套餐表</a>
+  <aside class="promo" aria-label="推广：lmVPN">
+    <div class="shell promo-inner">
+      <span class="promo-label">推广</span>
+      <a href="https://www.4tmr.com/r/WvmW4NzF" target="_blank" rel="nofollow sponsored noopener" aria-label="了解 lmVPN（推广链接）">
+        <img src="https://img.v2dao.site/lmvpn-banner.gif" alt="lmVPN，VPN 翻墙，免费试用，3 元套餐" width="1200" height="100" loading="lazy" decoding="async">
+      </a>
+    </div>
+  </aside>
   <header>
     <div class="shell header-row">
       <a class="brand" href="./">Cheapest DeepSeek Plan</a>
@@ -254,12 +272,11 @@ export function renderIndex({ config, origin }) {
 }
 
 export function renderSitemap(origin) {
-  const today = new Date().toISOString().slice(0, 10);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${origin}/</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>2026-10-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
