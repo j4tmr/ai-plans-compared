@@ -1,0 +1,29 @@
+{
+  "name": "cheapest-deepseek-plan",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Track the cheapest current DeepSeek Flash plans across WorkBuddy, OpenCode, Command Code and the official API.",
+  "keywords": [
+    "deepseek",
+    "deepseek-flash",
+    "pricing",
+    "workbuddy",
+    "opencode",
+    "commandcode",
+    "coding-plan"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "update": "node scripts/update-prices.mjs",
+    "build": "node scripts/build-site.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run test && npm run build"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Cheapest DeepSeek Plan",
+  "short_name": "DeepSeek Plans",
+  "start_url": ".",
+  "display": "minimal-ui",
+  "background_color": "#fff8ef",
+  "theme_color": "#ff5a1f",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "focus_model": {
+    "id": "deepseek-v4.1-flash",
+    "display_name": "DeepSeek V4.1 Flash",
+    "official_api_alias": "deepseek-flash",
+    "aliases": ["deepseek-flash", "deepseek-v4-flash"]
+  },
+  "methodology_version": 1,
+  "assumptions": [
+    {
+      "id": "workbuddy_credit_to_tokens",
+      "source_id": "workbuddy",
+      "tokens_per_credit": 600000,
+      "confidence": "low",
+      "note": "Tokenkoi plans.json 于 2026-10-28 记录的社区实测换算：4000 积分约等于 24 亿含缓存 token。这不是 WorkBuddy 官方公布的比例，实际随缓存命中率和任务结构变化。",
+      "source_url": "https://www.workbuddy.cn/docs/workbuddy/Pricing"
+    }
+  ],
+  "plans": [
+    {
+      "id": "workbuddy-trial",
+      "source_id": "workbuddy",
+      "kind": "subscription",
+      "tags": ["free_trial", "low_confidence"],
+      "notes": "免费体验档；额度和赠送活动可能随时调整。"
+    },
+    {
+      "id": "workbuddy-standard",
+      "source_id": "workbuddy",
+      "kind": "subscription",
+      "tags": ["monthly", "credit_assumption"],
+      "notes": "优先采用连续包月价；同页还提供月付原价和连续包年价。"
+    },
+    {
+      "id": "workbuddy-pro",
+      "source_id": "workbuddy",
+      "kind": "subscription",
+      "tags": ["monthly", "credit_assumption"],
+      "notes": "优先采用连续包月价；同页还提供月付原价和连续包年价。"
+    },
+    {
+      "id": "workbuddy-flagship",
+      "source_id": "workbuddy",
+      "kind": "subscription",
+      "tags": ["monthly", "credit_assumption"],
+      "notes": "优先采用连续包月价；同页还提供月付原价和连续包年价。"
+    },
+    {
+      "id": "opencode_go",
+      "source_id": "opencode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "官方页给出模型、单价和 DeepSeek V4.1 Flash 每月额度；不是 token 包。"
+    },
+    {
+      "id": "opencode_go_plus",
+      "source_id": "opencode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "官方页给出模型、单价和 DeepSeek V4.1 Flash 每月额度；不是 token 包。"
+    },
+    {
+      "id": "opencode_go_teams",
+      "source_id": "opencode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value", "per_member"],
+      "notes": "按成员计费；官方页给出 DeepSeek V4.1 Flash 每月额度。"
+    },
+    {
+      "id": "commandcode_go",
+      "source_id": "commandcode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "DeepSeek V4.1 Flash 在 Go 档有 boosted monthly credits。"
+    },
+    {
+      "id": "commandcode_goat",
+      "source_id": "commandcode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "DeepSeek V4.1 Flash 在 GOAT 档有 boosted monthly credits。"
+    },
+    {
+      "id": "commandcode_pro",
+      "source_id": "commandcode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "DeepSeek V4.1 Flash 在 Pro 档有 boosted monthly credits。"
+    },
+    {
+      "id": "commandcode_provider",
+      "source_id": "commandcode",
+      "kind": "pay_as_you_go",
+      "tags": ["pay_as_you_go"],
+      "notes": "Provider 档为按量付费接口，没有固定月度套餐额度。"
+    },
+    {
+      "id": "commandcode_max_10",
+      "source_id": "commandcode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "高价大额档，未看到 DeepSeek 档的额外 boosted credits。"
+    },
+    {
+      "id": "commandcode_max_20",
+      "source_id": "commandcode",
+      "kind": "subscription",
+      "tags": ["monthly", "model_value"],
+      "notes": "高价大额档，未看到 DeepSeek 档的额外 boosted credits。"
+    },
+    {
+      "id": "commandcode_team_pro",
+      "source_id": "commandcode",
+      "kind": "subscription",
+      "tags": ["monthly", "team"],
+      "notes": "团队档；官方页给出发票、SSO 等团队能力。"
+    },
+    {
+      "id": "deepseek_official_api",
+      "source_id": "deepseek",
+      "kind": "api_baseline",
+      "tags": ["official", "pay_as_you_go"],
+      "notes": "无订阅套餐，只作为官方按量计费基准。"
+    }
+  ]
+}

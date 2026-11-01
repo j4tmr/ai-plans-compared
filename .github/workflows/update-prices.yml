@@ -1,0 +1,37 @@
+name: Update prices
+
+on:
+  schedule:
+    # Every 6 hours: 00:15, 06:15, 12:15 and 18:15 UTC.
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run update
+      - run: npm run build
+      - name: Commit refreshed data
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data public README.md; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git add data public README.md
+            git commit -m "chore(data): refresh DeepSeek Flash pricing"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
