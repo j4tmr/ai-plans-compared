@@ -32,8 +32,10 @@ function resolveOrigin() {
 const origin = resolveOrigin();
 await mkdir(publicDir, { recursive: true });
 await mkdir(path.join(publicDir, "data"), { recursive: true });
+await mkdir(path.join(publicDir, "en"), { recursive: true });
 
-await writeFile(path.join(publicDir, "index.html"), renderIndex({ document, config, origin }));
+await writeFile(path.join(publicDir, "index.html"), renderIndex({ document, config, origin, locale: "zh-CN" }));
+await writeFile(path.join(publicDir, "en/index.html"), renderIndex({ document, config, origin, locale: "en" }));
 await writeFile(path.join(publicDir, "data/pricing.json"), `${JSON.stringify(document, null, 2)}\n`);
 await writeFile(path.join(publicDir, "sitemap.xml"), renderSitemap(origin));
 await writeFile(path.join(publicDir, "feed.xml"), renderFeed(document, origin));

@@ -1,13 +1,15 @@
 # Cheapest DeepSeek Plan
 
-> 同样 70 元 / $10，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
+> 最便宜的 DeepSeek 套餐：同样 70 元 / $10，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
+> The cheapest DeepSeek plans around $10: estimated Flash token counts and usage walls in Chinese and English.
 
-## 数据
+## Pages
 
-- HTML: https://j4tmr.github.io/cheapest-deepseek-plan/
-- 原文: https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030
+- 中文: https://j4tmr.github.io/cheapest-deepseek-plan/
+- English: https://j4tmr.github.io/cheapest-deepseek-plan/en/
+- Source article: https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030
 - License: MIT
 
-## 主题
+## Topics
 
-OpenCode Go、Command Code GOAT、WorkBuddy 标准版，DeepSeek Flash token 估算与 5 小时 / 每周限额。
+Cheapest DeepSeek plan, DeepSeek Flash pricing, OpenCode Go, Command Code GOAT, WorkBuddy, token estimates, 5-hour and weekly usage limits.

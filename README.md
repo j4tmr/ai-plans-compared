@@ -1,8 +1,11 @@
 # Cheapest DeepSeek Plan
 
-同样 **70 元 / $10** 这一档，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
+最便宜的 DeepSeek 套餐：同样 **70 元 / $10** 这一档，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
 
-在线页面：https://j4tmr.github.io/cheapest-deepseek-plan/
+The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token counts, cache-hit rates, and where the 5-hour / weekly usage walls hit.
+
+- 中文页面：https://j4tmr.github.io/cheapest-deepseek-plan/
+- English page: https://j4tmr.github.io/cheapest-deepseek-plan/en/
 
 原文：https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030
 
