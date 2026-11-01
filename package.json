@@ -24,6 +24,6 @@
     "check": "npm run test && npm run build"
   },
   "dependencies": {
-    "cheerio": "1.0.0"
+    "cheerio": "1.2.0"
   }
 }
