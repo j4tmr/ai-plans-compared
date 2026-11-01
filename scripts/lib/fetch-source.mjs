@@ -1,5 +1,5 @@
 const DEFAULT_HEADERS = {
-  "user-agent": "cheapest-deepseek-plan/0.1 (+https://github.com/j4tmr/cheapest-deepseek-plan)",
+  "user-agent": "ai-plans-compared/0.1 (+https://github.com/j4tmr/ai-plans-compared)",
   accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8",
   "accept-language": "zh-CN,zh;q=0.9,en;q=0.8"
 };

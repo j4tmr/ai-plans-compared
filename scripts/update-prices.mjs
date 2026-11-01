@@ -219,7 +219,7 @@ async function main() {
   const dataChanged = !previous || signature(previous.plans ?? []) !== signature(rankedPlans);
   const document = {
     schema_version: 1,
-    project: "cheapest-deepseek-plan",
+    project: "ai-plans-compared",
     updated_at: dataChanged ? checkedAt : previous.updated_at,
     checked_at: checkedAt,
     focus_model: officialModel,

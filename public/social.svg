@@ -12,7 +12,7 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="1020" cy="160" r="180" fill="#eefaf5"/>
   <circle cx="170" cy="490" r="150" fill="#ffeadf"/>
-  <text x="90" y="200" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="46" font-weight="800" fill="#ff5a1f">CHEAPEST DEEPSEEK PLAN</text>
+  <text x="90" y="200" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="46" font-weight="800" fill="#ff5a1f">AI PLANS COMPARED</text>
   <text x="90" y="330" font-family="Bricolage Grotesque, Arial, sans-serif" font-size="88" font-weight="800" fill="#161c19">DeepSeek Flash 套餐对比</text>
   <text x="90" y="410" font-family="IBM Plex Sans, Arial, sans-serif" font-size="28" fill="#5f6b65">WorkBuddy · OpenCode · Command Code · Official API</text>
   <path d="M90 490h280l-28 34H90z" fill="url(#mark)"/>

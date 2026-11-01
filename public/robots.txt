@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://j4tmr.github.io/cheapest-deepseek-plan/sitemap.xml
+Sitemap: https://j4tmr.github.io/ai-plans-compared/sitemap.xml

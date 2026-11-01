@@ -1,8 +1,8 @@
 {
-  "name": "Cheapest DeepSeek Plan",
-  "origin": "https://j4tmr.github.io/cheapest-deepseek-plan",
-  "path": "/cheapest-deepseek-plan",
+  "name": "AI Plans Compared",
+  "origin": "https://j4tmr.github.io/ai-plans-compared",
+  "path": "/ai-plans-compared",
   "locale": "zh-CN",
-  "repository": "j4tmr/cheapest-deepseek-plan",
+  "repository": "j4tmr/ai-plans-compared",
   "license": "MIT"
 }

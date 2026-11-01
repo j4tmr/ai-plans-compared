@@ -1,17 +1,17 @@
-# Cheapest DeepSeek Plan
+# AI Plans Compared
 
-最便宜的 DeepSeek 套餐：同样 **70 元 / $10** 这一档，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
+AI 订阅与套餐对比站。当前页面：最便宜的 DeepSeek 套餐——同样 **70 元 / $10** 这一档，DeepSeek Flash 大概能跑多少 token，哪里会撞墙；之后会扩展到其他模型和套餐。
 
 The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token counts, cache-hit rates, and where the 5-hour / weekly usage walls hit.
 
-- 中文页面：https://j4tmr.github.io/cheapest-deepseek-plan/
-- English page: https://j4tmr.github.io/cheapest-deepseek-plan/en/
+- 中文页面：https://j4tmr.github.io/ai-plans-compared/
+- English page: https://j4tmr.github.io/ai-plans-compared/en/
 
 原文：https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030
 
 ## 推广 Sponsored
 
-[![88API Claude 中转站：Opus / Sonnet / Haiku 全系模型，注册送测试额度](https://j4tmr.github.io/cheapest-deepseek-plan/88api-banner.svg)](https://88api.ai/sign-up?aff=dlVM)
+[![88API Claude 中转站：Opus / Sonnet / Haiku 全系模型，注册送测试额度](https://j4tmr.github.io/ai-plans-compared/88api-banner.svg)](https://88api.ai/sign-up?aff=dlVM)
 
 - [88API](https://88api.ai/sign-up?aff=dlVM)：Claude 中转站，Claude Code 直连，Opus / Sonnet / Haiku 全系模型可用，注册送测试额度。
 - [WorkBuddy](https://www.workbuddy.cn/events/invite?inviteCode=6ueawbhr4)：AI 办公助手，通过邀请注册可领 2000 积分。

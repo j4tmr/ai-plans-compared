@@ -1,6 +1,6 @@
 {
-  "name": "Cheapest DeepSeek Plan",
-  "short_name": "DeepSeek Plans",
+  "name": "AI Plans Compared",
+  "short_name": "AI Plans",
   "start_url": ".",
   "display": "minimal-ui",
   "background_color": "#fff8ef",

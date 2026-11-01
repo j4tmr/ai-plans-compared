@@ -78,9 +78,9 @@ const document = {
 };
 
 const config = {
-  name: "Cheapest DeepSeek Plan",
+  name: "AI Plans Compared",
   locale: "zh-CN",
-  repository: "j4tmr/cheapest-deepseek-plan"
+  repository: "j4tmr/ai-plans-compared"
 };
 
 test("renders the Chinese page with bilingual SEO and sponsored links", () => {
@@ -92,6 +92,7 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /<link rel="alternate" hreflang="x-default" href="https:\/\/example\.com\/">/);
   assert.match(html, /<meta property="og:url" content="https:\/\/example\.com\/">/);
   assert.match(html, /<a class="brand" href="\.\/"/);
+  assert.match(html, /hreflang="zh-CN">AI 套餐对比<\/a>/);
   assert.match(html, /最便宜的 DeepSeek 套餐/);
   assert.match(html, /（2026年11月更新）/);
   assert.match(html, /每日自动核对官方价/);
@@ -124,6 +125,7 @@ test("renders a full English page with hreflang and localized promos", () => {
   const html = renderIndex({ document, config, origin: "https://example.com", locale: "en" });
   assert.match(html, /<html lang="en">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/example\.com\/en\/">/);
+  assert.match(html, /AI Plans Compared/);
   assert.match(html, /Cheapest DeepSeek Plan\? \$10 DeepSeek Flash Token Limits Compared/);
   assert.match(html, /\(Nov 2026\)/);
   assert.match(html, /What is the cheapest DeepSeek plan/);

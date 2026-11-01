@@ -115,6 +115,7 @@ const faqItems = {
 const copyByLocale = {
   "zh-CN": {
     lang: "zh-CN",
+    siteName: "AI 套餐对比",
     assetBase: "",
     homeHref: "./",
     switchHref: "en/",
@@ -171,6 +172,7 @@ const copyByLocale = {
   },
   en: {
     lang: "en",
+    siteName: "AI Plans Compared",
     assetBase: "../",
     homeHref: "../",
     switchHref: "../",
@@ -240,7 +242,7 @@ function jsonLd({ config, copy, faqs, plans, siteUrl, asOfDate }) {
     dateModified: asOfDate,
     keywords: copy.keywordList,
     variableMeasured: plans.map((plan) => `${plan.name}: ${plan.tokens}`),
-    creator: { "@type": "Organization", name: config.name }
+    creator: { "@type": "Organization", name: copy.siteName }
   };
   const faq = {
     "@context": "https://schema.org",
@@ -298,7 +300,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
   <link rel="manifest" href="${copy.assetBase}manifest.webmanifest">
   <link rel="icon" href="${copy.assetBase}favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="${escapeHtml(config.name)}">
+  <meta property="og:site_name" content="${escapeHtml(copy.siteName)}">
   <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(copy.description)}">
   <meta property="og:url" content="${escapeHtml(siteUrl)}">
@@ -334,7 +336,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
   </aside>
   <header>
     <div class="shell header-row">
-      <a class="brand" href="${copy.homeHref}" hreflang="${copy.lang}">Cheapest DeepSeek Plan</a>
+      <a class="brand" href="${copy.homeHref}" hreflang="${copy.lang}">${escapeHtml(copy.siteName)}</a>
       <nav aria-label="${escapeHtml(copy.navAria)}">
         ${copy.nav.map(([href, label]) => `<a href="${href}">${escapeHtml(label)}</a>`).join("")}
         <a class="lang-switch" href="${copy.switchHref}" hreflang="${copy.switchLang}" lang="${copy.switchLang}">${escapeHtml(copy.switchLabel)}</a>
@@ -539,7 +541,7 @@ export function renderManifest(config) {
   return JSON.stringify(
     {
       name: config.name,
-      short_name: "DeepSeek Plans",
+      short_name: "AI Plans",
       start_url: ".",
       display: "minimal-ui",
       background_color: "#fff8ef",
