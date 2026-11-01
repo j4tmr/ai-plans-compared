@@ -83,12 +83,15 @@ const config = {
   repository: "j4tmr/cheapest-deepseek-plan"
 };
 
-test("renders SEO-critical head tags and plan rows", () => {
+test("renders the simplified 70-yuan comparison and SEO tags", () => {
   const html = renderIndex({ document, config, origin: "https://example.com" });
   assert.match(html, /<link rel="canonical" href="https:\/\/example\.com\/">/);
   assert.match(html, /<meta property="og:url" content="https:\/\/example\.com\/">/);
   assert.match(html, /<a class="brand" href="\.\/">/);
-  assert.match(html, /Command Code · Go/);
+  assert.match(html, /Command Code GOAT/);
+  assert.match(html, /约 33 亿/);
+  assert.match(html, /5 小时/);
+  assert.match(html, /three-plans-70-yuan-deepseek-tokens-20261030/);
   assert.match(html, /FAQPage/);
-  assert.match(html, /DataDownload/);
+  assert.match(html, /70 元 DeepSeek Flash 套餐 token 对比/);
 });

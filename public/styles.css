@@ -130,7 +130,7 @@ h3 { font-size: 1.18rem; margin-bottom: .4rem; }
   background: rgba(255,255,255,.84);
   box-shadow: var(--shadow);
 }
-table { width: 100%; border-collapse: collapse; min-width: 1000px; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
 caption {
   padding: 1rem 1.2rem;
   text-align: left;
@@ -180,6 +180,9 @@ details {
 summary { cursor: pointer; font-weight: 650; }
 details p { margin: .7rem 0 0; color: var(--muted); }
 
+.plain-list { margin: 0; padding-left: 1.2rem; color: var(--muted); line-height: 1.9; }
+.plain-list a { color: var(--accent); }
+
 footer { padding: 3rem 0 3.5rem; border-top: 1px solid var(--line); background: rgba(255,255,255,.6); }
 footer p { margin: .3rem 0; color: var(--muted); }
 
@@ -195,6 +198,6 @@ footer p { margin: .3rem 0; color: var(--muted); }
   h1 { max-width: 100%; }
   .hero { padding-bottom: 3rem; }
   .section { padding: 3rem 0; }
-  table { min-width: 780px; }
+  table { min-width: 680px; }
   th, td { padding: .8rem; }
 }

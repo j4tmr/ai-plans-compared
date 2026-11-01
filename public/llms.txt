@@ -1,13 +1,13 @@
 # Cheapest DeepSeek Plan
 
-> DeepSeek-V4.1-Flash-1017 价格快照，更新于 2026-11-01T07:50:18.439Z。
+> 同样 70 元 / $10，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
 
 ## 数据
 
-- JSON API: https://j4tmr.github.io/cheapest-deepseek-plan/data/pricing.json
 - HTML: https://j4tmr.github.io/cheapest-deepseek-plan/
+- 原文: https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030
 - License: MIT
 
 ## 主题
 
-DeepSeek Flash 套餐对比、WorkBuddy、OpenCode、Command Code、官方 API 按量计费。
+OpenCode Go、Command Code GOAT、WorkBuddy 标准版，DeepSeek Flash token 估算与 5 小时 / 每周限额。

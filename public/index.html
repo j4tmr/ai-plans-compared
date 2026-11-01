@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DeepSeek Flash 最便宜套餐对比 | WorkBuddy · OpenCode · Command Code · 官方 API</title>
-  <meta name="description" content="自动追踪 WorkBuddy、OpenCode、Command Code 和 DeepSeek 官方 API 的最新 Flash 套餐价格，按月费、额度和估算 token 成本排序。">
+  <title>70 元 DeepSeek Flash 套餐对比：大概能跑多少 token、哪里会撞墙</title>
+  <meta name="description" content="OpenCode Go、Command Code GOAT、WorkBuddy 标准版：同样 10 美元 / 70 元，大概能用多少 DeepSeek Flash token，5 小时和周限额哪里会撞墙。">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#fff8ef">
   <link rel="canonical" href="https://j4tmr.github.io/cheapest-deepseek-plan/">
@@ -15,18 +15,18 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Cheapest DeepSeek Plan">
-  <meta property="og:title" content="DeepSeek Flash 最便宜套餐对比 | WorkBuddy · OpenCode · Command Code · 官方 API">
-  <meta property="og:description" content="自动追踪 WorkBuddy、OpenCode、Command Code 和 DeepSeek 官方 API 的最新 Flash 套餐价格，按月费、额度和估算 token 成本排序。">
+  <meta property="og:title" content="70 元 DeepSeek Flash 套餐对比：大概能跑多少 token、哪里会撞墙">
+  <meta property="og:description" content="OpenCode Go、Command Code GOAT、WorkBuddy 标准版：同样 10 美元 / 70 元，大概能用多少 DeepSeek Flash token，5 小时和周限额哪里会撞墙。">
   <meta property="og:url" content="https://j4tmr.github.io/cheapest-deepseek-plan/">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="https://j4tmr.github.io/cheapest-deepseek-plan/social.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DeepSeek Flash 最便宜套餐对比 | WorkBuddy · OpenCode · Command Code · 官方 API">
-  <meta name="twitter:description" content="自动追踪 WorkBuddy、OpenCode、Command Code 和 DeepSeek 官方 API 的最新 Flash 套餐价格，按月费、额度和估算 token 成本排序。">
+  <meta name="twitter:title" content="70 元 DeepSeek Flash 套餐对比：大概能跑多少 token、哪里会撞墙">
+  <meta name="twitter:description" content="OpenCode Go、Command Code GOAT、WorkBuddy 标准版：同样 10 美元 / 70 元，大概能用多少 DeepSeek Flash token，5 小时和周限额哪里会撞墙。">
   <meta name="twitter:image" content="https://j4tmr.github.io/cheapest-deepseek-plan/social.svg">
   <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cheapest DeepSeek Flash Plans","description":"WorkBuddy、OpenCode、Command Code 与 DeepSeek 官方 API 的 DeepSeek V4.1 Flash 价格快照。","url":"https://j4tmr.github.io/cheapest-deepseek-plan/","sameAs":"https://github.com/j4tmr/cheapest-deepseek-plan","license":"https://opensource.org/licenses/MIT","dateModified":"2026-11-01T07:50:18.439Z","creator":{"@type":"Organization","name":"Cheapest DeepSeek Plan"},"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://j4tmr.github.io/cheapest-deepseek-plan/data/pricing.json"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"现在最便宜的 DeepSeek Flash 套餐是哪一个？","acceptedAnswer":{"@type":"Answer","text":"页面同时看两个口径：月费最低看已收录的付费订阅；单位成本最低看折算后的 ¥/1M tokens。不同平台额度和模型范围不同，建议先看口径再选套餐。"}},{"@type":"Question","name":"DeepSeek Flash 官方价格怎么算？","acceptedAnswer":{"@type":"Answer","text":"官方 API 按 token 计费，错峰和高峰价不同；本站用错峰输入和输出的 50:50 组合价作为参考，不预测实际请求比例。"}},{"@type":"Question","name":"WorkBuddy 的积分为什么有低置信度？","acceptedAnswer":{"@type":"Answer","text":"WorkBuddy 公开的是积分，不是固定 token 数。Tokenkoi 的社区实测给出约 600,000 tokens/credit 的换算，但实际会随缓存命中率和任务结构变化。"}},{"@type":"Question","name":"数据多久更新一次？","acceptedAnswer":{"@type":"Answer","text":"GitHub Actions 默认每 6 小时抓取一次；如果某次抓取失败，数据会保留并标记为 stale，下一次成功后自动恢复。"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"70 元 DeepSeek Flash 套餐 token 对比","description":"OpenCode Go、Command Code GOAT、WorkBuddy 标准版在同样 70 元 / $10 档位的大致 token 数与撞墙说明。","url":"https://j4tmr.github.io/cheapest-deepseek-plan/","sameAs":"https://github.com/j4tmr/cheapest-deepseek-plan","license":"https://opensource.org/licenses/MIT","creator":{"@type":"Organization","name":"Cheapest DeepSeek Plan"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"同样 70 元，哪家能跑的 DeepSeek Flash token 最多？","acceptedAnswer":{"@type":"Answer","text":"按原文的实测缓存命中率估算：OpenCode Go 约 33 亿、Command Code GOAT 约 31 亿、WorkBuddy 标准版约 24 亿，都是含缓存 token。"}},{"@type":"Question","name":"什么是撞墙？","acceptedAnswer":{"@type":"Answer","text":"OpenCode 有 5 小时和每周限额，Command Code 有 5 小时 $20、每周 $50 的额度上限。短时间猛跑时，先卡住的是这些窗口额度，而不是月额度。WorkBuddy 则是积分扣完为止。"}},{"@type":"Question","name":"这些 token 数是官方数字吗？","acceptedAnswer":{"@type":"Answer","text":"不是。官方只给美元额度或积分，token 数是按你自己 2026-10-14 至 10-30 的实际用量、缓存命中率和官方单价估算出来的。"}}]}</script>
 </head>
 <body>
   <a class="skip" href="#plans">跳到套餐表</a>
@@ -34,51 +34,38 @@
     <div class="shell header-row">
       <a class="brand" href="./">Cheapest DeepSeek Plan</a>
       <nav aria-label="站内导航">
-        <a href="#plans">套餐表</a>
-        <a href="#method">口径</a>
-        <a href="#sources">来源</a>
-        <a href="#faq">FAQ</a>
+        <a href="#plans">token 对比</a>
+        <a href="#wall">撞墙</a>
+        <a href="#method">数字怎么来的</a>
       </nav>
     </div>
   </header>
   <main>
     <section class="hero">
       <div class="shell">
-        <p class="eyebrow">GitHub Actions 每 6 小时更新</p>
-        <h1>DeepSeek Flash 最便宜套餐对比</h1>
+        <p class="eyebrow">同样 10 美元 / 70 元这一档</p>
+        <h1>70 元 DeepSeek Flash，大概能跑多少 token？</h1>
         <p class="lede">
-          聚焦 <strong>DeepSeek-V4.1-Flash-1017</strong>，对比 WorkBuddy、OpenCode、Command Code 与官方 API。
-          每条记录都保留来源、核验时间和折算假设。
+          只比三家：<strong>OpenCode Go</strong>、<strong>Command Code GOAT</strong>、<strong>WorkBuddy 标准版</strong>。
+          看大概 token 数，也看 5 小时 / 每周限额会在哪里撞墙。
         </p>
         <div class="cards">
           
-    <article class="card">
-      <p class="eyebrow">月费最低</p>
-      <p class="value">Command Code Go</p>
-      <p class="muted">已收录的付费订阅中，折算 CNY 后月费最低。</p>
-    </article>
-  
-          
-    <article class="card">
-      <p class="eyebrow">估算成本最低</p>
-      <p class="value">WorkBuddy 旗舰版</p>
-      <p class="muted">按官方页/公开假设折算后，每百万 token 的估算成本最低。</p>
-    </article>
-  
-          
-    <article class="card">
-      <p class="eyebrow">免费体验</p>
-      <p class="value">WorkBuddy 体验版</p>
-      <p class="muted">当前公开的免费体验档；额度与有效期以官方页为准。</p>
-    </article>
-  
-          
-    <article class="card">
-      <p class="eyebrow">官方按量基准</p>
-      <p class="value">DeepSeek 官方 API</p>
-      <p class="muted">错峰 50:50 综合约 $0.375/1M tokens</p>
-    </article>
-  
+          <article class="card">
+            <p class="eyebrow">OpenCode Go</p>
+            <p class="value">约 33 亿</p>
+            <p class="muted">含缓存 token · $10 / 月</p>
+          </article>
+          <article class="card">
+            <p class="eyebrow">Command Code GOAT</p>
+            <p class="value">约 31 亿</p>
+            <p class="muted">含缓存 token · $10 / 月</p>
+          </article>
+          <article class="card">
+            <p class="eyebrow">WorkBuddy 标准版</p>
+            <p class="value">约 24 亿</p>
+            <p class="muted">含缓存 token · ¥70 / 月</p>
+          </article>
         </div>
       </div>
     </section>
@@ -86,316 +73,113 @@
     <section id="plans" class="section">
       <div class="shell">
         <div class="section-head">
-          <h2>套餐对比</h2>
-          <p>更新时间：2026-11-01T07:50:18.439Z；最近检查：2026-11-01T07:50:18.439Z</p>
+          <h2>同样 70 元，大概能跑多少 token</h2>
+          <p>按你 2026-10-14 至 10-30 的实际用量和缓存命中率估算，单位约等于“含缓存 token”。</p>
         </div>
-        <div class="table-wrap" role="region" aria-label="DeepSeek Flash 套餐对比" tabindex="0">
+        <div class="table-wrap" role="region" aria-label="70 元 DeepSeek Flash 套餐 token 对比" tabindex="0">
           <table>
-            <caption>DeepSeek Flash 订阅套餐估算成本表。不同平台的额度不可直接互换，请结合口径和说明阅读。</caption>
+            <caption>三家的官方额度、实测估算 token 数和缓存命中率。</caption>
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">平台 / 套餐</th>
+                <th scope="col">套餐</th>
                 <th scope="col">月费</th>
-                <th scope="col">DeepSeek 额度</th>
-                <th scope="col">估算额度</th>
-                <th scope="col">估算 ¥/1M tokens</th>
-                <th scope="col">置信度</th>
-                <th scope="col">说明</th>
+                <th scope="col">官方额度</th>
+                <th scope="col">大概 token</th>
+                <th scope="col">缓存命中率</th>
               </tr>
             </thead>
             <tbody>
-    <tr>
-      <td data-label="排名" class="rank">1</td>
-      <td data-label="平台 / 套餐">
-        <strong>WorkBuddy · 旗舰版</strong>
-        <span class="muted">连续包月</span>
-        <div class="badges"><span class="badge">估算成本最低</span></div>
-      </td>
-      <td data-label="月费">¥700</td>
-      <td data-label="DeepSeek 额度">50,000 积分 / 月</td>
-      <td data-label="估算额度">30000M tokens</td>
-      <td data-label="估算成本">¥0.023333</td>
-      <td data-label="置信度">低</td>
-      <td data-label="说明">优先采用连续包月价；同页还提供月付原价和连续包年价。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">2</td>
-      <td data-label="平台 / 套餐">
-        <strong>WorkBuddy · 高级版</strong>
-        <span class="muted">连续包月</span>
-        
-      </td>
-      <td data-label="月费">¥140</td>
-      <td data-label="DeepSeek 额度">9,000 积分 / 月</td>
-      <td data-label="估算额度">5400M tokens</td>
-      <td data-label="估算成本">¥0.025926</td>
-      <td data-label="置信度">低</td>
-      <td data-label="说明">优先采用连续包月价；同页还提供月付原价和连续包年价。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">3</td>
-      <td data-label="平台 / 套餐">
-        <strong>WorkBuddy · 标准版</strong>
-        <span class="muted">连续包月</span>
-        
-      </td>
-      <td data-label="月费">¥70</td>
-      <td data-label="DeepSeek 额度">4,000 积分 / 月</td>
-      <td data-label="估算额度">2400M tokens</td>
-      <td data-label="估算成本">¥0.029167</td>
-      <td data-label="置信度">低</td>
-      <td data-label="说明">优先采用连续包月价；同页还提供月付原价和连续包年价。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">4</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · Go</strong>
-        <span class="muted">月付</span>
-        <div class="badges"><span class="badge">月费最低</span></div>
-      </td>
-      <td data-label="月费">$1</td>
-      <td data-label="DeepSeek 额度">$10 / 月</td>
-      <td data-label="估算额度">26.67M tokens</td>
-      <td data-label="估算成本">¥0.249484</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">DeepSeek V4.1 Flash 在 Go 档有 boosted monthly credits。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">4</td>
-      <td data-label="平台 / 套餐">
-        <strong>OpenCode · Go</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$10</td>
-      <td data-label="DeepSeek 额度">$100 / 月</td>
-      <td data-label="估算额度">266.67M tokens</td>
-      <td data-label="估算成本">¥0.249484</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">官方页给出模型、单价和 DeepSeek V4.1 Flash 每月额度；不是 token 包。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">4</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · GOAT</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$10</td>
-      <td data-label="DeepSeek 额度">$100 / 月</td>
-      <td data-label="估算额度">266.67M tokens</td>
-      <td data-label="估算成本">¥0.249484</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">DeepSeek V4.1 Flash 在 GOAT 档有 boosted monthly credits。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">5</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · Pro</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$20</td>
-      <td data-label="DeepSeek 额度">$110 / 月</td>
-      <td data-label="估算额度">293.33M tokens</td>
-      <td data-label="估算成本">¥0.453607</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">DeepSeek V4.1 Flash 在 Pro 档有 boosted monthly credits。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">6</td>
-      <td data-label="平台 / 套餐">
-        <strong>OpenCode · Go Teams</strong>
-        <span class="muted">按成员计费</span>
-        
-      </td>
-      <td data-label="月费">$20</td>
-      <td data-label="DeepSeek 额度">$105 / 月</td>
-      <td data-label="估算额度">280M tokens</td>
-      <td data-label="估算成本">¥0.475207</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">按成员计费；官方页给出 DeepSeek V4.1 Flash 每月额度。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">7</td>
-      <td data-label="平台 / 套餐">
-        <strong>OpenCode · Go Plus</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$40</td>
-      <td data-label="DeepSeek 额度">$200 / 月</td>
-      <td data-label="估算额度">533.33M tokens</td>
-      <td data-label="估算成本">¥0.498967</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">官方页给出模型、单价和 DeepSeek V4.1 Flash 每月额度；不是 token 包。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">8</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · Max 10×</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$100</td>
-      <td data-label="DeepSeek 额度">$150 / 月</td>
-      <td data-label="估算额度">400M tokens</td>
-      <td data-label="估算成本">¥1.663225</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">高价大额档，未看到 DeepSeek 档的额外 boosted credits。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">8</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · Max 20×</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$200</td>
-      <td data-label="DeepSeek 额度">$300 / 月</td>
-      <td data-label="估算额度">800M tokens</td>
-      <td data-label="估算成本">¥1.663225</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">高价大额档，未看到 DeepSeek 档的额外 boosted credits。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">9</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · Team Pro</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$40</td>
-      <td data-label="DeepSeek 额度">$40 / 月</td>
-      <td data-label="估算额度">106.67M tokens</td>
-      <td data-label="估算成本">¥2.494838</td>
-      <td data-label="置信度">中</td>
-      <td data-label="说明">团队档；官方页给出发票、SSO 等团队能力。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">—</td>
-      <td data-label="平台 / 套餐">
-        <strong>WorkBuddy · 体验版</strong>
-        <span class="muted">月付</span>
-        <div class="badges"><span class="badge">免费体验</span></div>
-      </td>
-      <td data-label="月费">¥0</td>
-      <td data-label="DeepSeek 额度">500 积分 / 月</td>
-      <td data-label="估算额度">300M tokens</td>
-      <td data-label="估算成本">¥0</td>
-      <td data-label="置信度">低</td>
-      <td data-label="说明">免费体验档；额度和赠送活动可能随时调整。</td>
-    </tr>
-  
-    <tr>
-      <td data-label="排名" class="rank">—</td>
-      <td data-label="平台 / 套餐">
-        <strong>Command Code · Provider</strong>
-        <span class="muted">月付</span>
-        
-      </td>
-      <td data-label="月费">$15</td>
-      <td data-label="DeepSeek 额度">无固定额度</td>
-      <td data-label="估算额度">—</td>
-      <td data-label="估算成本">—</td>
-      <td data-label="置信度">—</td>
-      <td data-label="说明">Provider 档为按量付费接口，没有固定月度套餐额度。</td>
-    </tr>
-  </tbody>
+              
+              <tr>
+                <td><strong>OpenCode Go</strong></td>
+                <td>$10 / 月</td>
+                <td>Flash 每月 $80 额度</td>
+                <td><strong>约 33 亿</strong> <span class="muted">含缓存 token</span></td>
+                <td>93.09%</td>
+              </tr>
+              <tr>
+                <td><strong>Command Code GOAT</strong></td>
+                <td>$10 / 月</td>
+                <td>Flash 每月 $80（采样期 $60）</td>
+                <td><strong>约 31 亿</strong> <span class="muted">含缓存 token</span></td>
+                <td>92.40%</td>
+              </tr>
+              <tr>
+                <td><strong>WorkBuddy 标准版</strong></td>
+                <td>¥70 / 月</td>
+                <td>4000 积分 / 月</td>
+                <td><strong>约 24 亿</strong> <span class="muted">含缓存 token</span></td>
+                <td>96.36%</td>
+              </tr>
+            </tbody>
           </table>
         </div>
-        <p class="muted">官方 API 基准：错峰输入 $0.15、输出 $0.6 / 1M tokens；高峰分别 $0.3、$1.2。</p>
       </div>
     </section>
 
-    <section id="method" class="section alt">
+    <section id="wall" class="section alt">
       <div class="shell">
-        <h2>口径与限制</h2>
-        <div class="method-grid">
-          <article>
-            <h3>月费最低</h3>
-            <p>只比较已收录且包含 DeepSeek Flash 的付费订阅。汇率来自同一快照，避免跨币种硬拼。</p>
-          </article>
-          <article>
-            <h3>估算成本最低</h3>
-            <p>OpenCode 和 Command Code 用官方美元额度 ÷ Flash 官方错峰综合价；WorkBuddy 用积分换算假设。</p>
-          </article>
-          <article>
-            <h3>不确定就标出来</h3>
-            <p>抓取失败保留旧数据并标记 <code>stale</code>；额度单位不同时不用假汇率强行折算。</p>
-          </article>
+        <div class="section-head">
+          <h2>撞墙点</h2>
+          <p>月额度不等于随时都能用完。高频使用时，先卡住的往往是 5 小时或每周窗口。</p>
         </div>
-      </div>
-    </section>
-
-    <section id="sources" class="section">
-      <div class="shell">
-        <h2>来源状态</h2>
-        <div class="table-wrap" role="region" aria-label="价格来源状态" tabindex="0">
+        <div class="table-wrap" role="region" aria-label="套餐限额与撞墙说明" tabindex="0">
           <table>
+            <caption>三家的公开限额与撞墙说明。</caption>
             <thead>
               <tr>
-                <th scope="col">来源</th><th scope="col">状态</th><th scope="col">时间</th><th scope="col">备注</th>
+                <th scope="col">套餐</th>
+                <th scope="col">公开限额</th>
+                <th scope="col">实际会怎么撞墙</th>
               </tr>
             </thead>
             <tbody>
-    <tr>
-      <td data-label="来源"><a href="https://api-docs.deepseek.com/quick_start/pricing/" rel="noopener">DeepSeek API 官方定价</a></td>
-      <td data-label="状态">抓取成功</td>
-      <td data-label="时间">2026-11-01T07:50:18.451Z</td>
-      <td data-label="备注">收录 0 个套餐</td>
-    </tr>
-  
-    <tr>
-      <td data-label="来源"><a href="https://www.workbuddy.cn/docs/workbuddy/Pricing" rel="noopener">WorkBuddy 定价详情</a></td>
-      <td data-label="状态">抓取成功</td>
-      <td data-label="时间">2026-11-01T07:50:18.619Z</td>
-      <td data-label="备注">收录 4 个套餐</td>
-    </tr>
-  
-    <tr>
-      <td data-label="来源"><a href="https://opencode.ai/v2/docs/console/go" rel="noopener">OpenCode Go plan</a></td>
-      <td data-label="状态">抓取成功</td>
-      <td data-label="时间">2026-11-01T07:50:18.823Z</td>
-      <td data-label="备注">收录 3 个套餐</td>
-    </tr>
-  
-    <tr>
-      <td data-label="来源"><a href="https://commandcode.ai/docs/resources/pricing-limits" rel="noopener">Command Code Pricing &amp; Limits</a></td>
-      <td data-label="状态">抓取成功</td>
-      <td data-label="时间">2026-11-01T07:50:24.192Z</td>
-      <td data-label="备注">收录 7 个套餐</td>
-    </tr>
-  </tbody>
+              
+              <tr>
+                <td><strong>OpenCode Go</strong></td>
+                <td>5 小时最多用当月额度的 20%，每周最多 50%</td>
+                <td>短时间猛跑容易先撞 5 小时墙，重任务要等窗口恢复。</td>
+              </tr>
+              <tr>
+                <td><strong>Command Code GOAT</strong></td>
+                <td>5 小时 $20，每周 $50</td>
+                <td>周额度比月额度更早见底，高频使用更容易撞墙。</td>
+              </tr>
+              <tr>
+                <td><strong>WorkBuddy 标准版</strong></td>
+                <td>积分用完为止；没有公开的 5 小时 / 周窗口</td>
+                <td>不撞时间墙，但积分扣完就没了。</td>
+              </tr>
+            </tbody>
           </table>
         </div>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="shell">
+        <h2>数字怎么来的</h2>
+        <ul class="plain-list">
+          <li>样本：2026-10-14 至 10-30，三家一共 121,105 次成功调用。</li>
+          <li>按真实缓存命中率估算：OpenCode 93.09%、Command Code 92.40%、WorkBuddy 96.36%。</li>
+          <li>官方单价：输入 $0.15、输出 $0.60、缓存读取 $0.003 / 1M tokens；忙时价格翻倍。</li>
+          <li>月额度和 5 小时 / 周限额为 2026-10-30 官方页快照，之后可能调整。</li>
+          <li>完整计算过程和采样明细见<a href="https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030" rel="noopener">原文</a>。</li>
+        </ul>
       </div>
     </section>
 
     <section id="faq" class="section alt">
       <div class="shell">
         <h2>常见问题</h2>
-        <details><summary>现在最便宜的 DeepSeek Flash 套餐是哪一个？</summary><p>页面同时看两个口径：月费最低看已收录的付费订阅；单位成本最低看折算后的 ¥/1M tokens。不同平台额度和模型范围不同，建议先看口径再选套餐。</p></details><details><summary>DeepSeek Flash 官方价格怎么算？</summary><p>官方 API 按 token 计费，错峰和高峰价不同；本站用错峰输入和输出的 50:50 组合价作为参考，不预测实际请求比例。</p></details><details><summary>WorkBuddy 的积分为什么有低置信度？</summary><p>WorkBuddy 公开的是积分，不是固定 token 数。Tokenkoi 的社区实测给出约 600,000 tokens/credit 的换算，但实际会随缓存命中率和任务结构变化。</p></details><details><summary>数据多久更新一次？</summary><p>GitHub Actions 默认每 6 小时抓取一次；如果某次抓取失败，数据会保留并标记为 stale，下一次成功后自动恢复。</p></details>
+        <details><summary>同样 70 元，哪家能跑的 DeepSeek Flash token 最多？</summary><p>按原文的实测缓存命中率估算：OpenCode Go 约 33 亿、Command Code GOAT 约 31 亿、WorkBuddy 标准版约 24 亿，都是含缓存 token。</p></details><details><summary>什么是撞墙？</summary><p>OpenCode 有 5 小时和每周限额，Command Code 有 5 小时 $20、每周 $50 的额度上限。短时间猛跑时，先卡住的是这些窗口额度，而不是月额度。WorkBuddy 则是积分扣完为止。</p></details><details><summary>这些 token 数是官方数字吗？</summary><p>不是。官方只给美元额度或积分，token 数是按你自己 2026-10-14 至 10-30 的实际用量、缓存命中率和官方单价估算出来的。</p></details>
       </div>
     </section>
   </main>
   <footer>
     <div class="shell">
-      <p>价格与条款以各平台官方页为准。本项目不构成购买建议。</p>
-      <p><a href="data/pricing.json">JSON API</a> · <a href="sitemap.xml">Sitemap</a> · <a href="feed.xml">RSS</a> · <a href="https://github.com/j4tmr/cheapest-deepseek-plan">GitHub</a> · MIT</p>
+      <p>价格和限额以各平台官方页为准；token 数是实测估算，不是官方承诺。本项目不构成购买建议。</p>
+      <p><a href="https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030" rel="noopener">原文</a> · <a href="https://github.com/j4tmr/cheapest-deepseek-plan">GitHub</a> · MIT</p>
     </div>
   </footer>
 </body>

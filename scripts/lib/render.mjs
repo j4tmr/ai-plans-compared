@@ -6,96 +6,68 @@ const escapeHtml = (value) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
-const formatMoney = (plan) => {
-  if (plan.price == null) return "按量";
-  const symbol = plan.currency === "CNY" ? "¥" : plan.currency === "USD" ? "$" : "";
-  return `${symbol}${plan.price.toLocaleString("zh-CN")}`;
-};
+const ARTICLE_URL = "https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030";
 
-const formatUsage = (plan) => {
-  if (plan.model_usage?.kind === "currency" && plan.model_usage.amount != null) {
-    return `$${plan.model_usage.amount.toLocaleString("zh-CN")} / 月`;
+// 来自《70 元 DeepSeek 三套餐对比》原文的实测结论。
+const focusPlans = [
+  {
+    name: "OpenCode Go",
+    price: "$10 / 月",
+    quota: "Flash 每月 $80 额度",
+    tokens: "约 33 亿",
+    tokensNote: "含缓存 token",
+    limit: "5 小时最多用当月额度的 20%，每周最多 50%",
+    wall: "短时间猛跑容易先撞 5 小时墙，重任务要等窗口恢复。",
+    cache: "93.09%"
+  },
+  {
+    name: "Command Code GOAT",
+    price: "$10 / 月",
+    quota: "Flash 每月 $80（采样期 $60）",
+    tokens: "约 31 亿",
+    tokensNote: "含缓存 token",
+    limit: "5 小时 $20，每周 $50",
+    wall: "周额度比月额度更早见底，高频使用更容易撞墙。",
+    cache: "92.40%"
+  },
+  {
+    name: "WorkBuddy 标准版",
+    price: "¥70 / 月",
+    quota: "4000 积分 / 月",
+    tokens: "约 24 亿",
+    tokensNote: "含缓存 token",
+    limit: "积分用完为止；没有公开的 5 小时 / 周窗口",
+    wall: "不撞时间墙，但积分扣完就没了。",
+    cache: "96.36%"
   }
-  if (plan.included_usage?.kind === "credits" && plan.included_usage.amount != null) {
-    return `${plan.included_usage.amount.toLocaleString("zh-CN")} 积分 / 月`;
+];
+
+const faqItems = () => [
+  {
+    q: "同样 70 元，哪家能跑的 DeepSeek Flash token 最多？",
+    a: "按原文的实测缓存命中率估算：OpenCode Go 约 33 亿、Command Code GOAT 约 31 亿、WorkBuddy 标准版约 24 亿，都是含缓存 token。"
+  },
+  {
+    q: "什么是撞墙？",
+    a: "OpenCode 有 5 小时和每周限额，Command Code 有 5 小时 $20、每周 $50 的额度上限。短时间猛跑时，先卡住的是这些窗口额度，而不是月额度。WorkBuddy 则是积分扣完为止。"
+  },
+  {
+    q: "这些 token 数是官方数字吗？",
+    a: "不是。官方只给美元额度或积分，token 数是按你自己 2026-10-14 至 10-30 的实际用量、缓存命中率和官方单价估算出来的。"
   }
-  if (plan.included_usage?.kind === "none") return "无固定额度";
-  return plan.included_usage?.note || "—";
-};
+];
 
-const confidenceLabels = {
-  official: "官方",
-  high: "高",
-  medium: "中",
-  low: "低"
-};
-
-const formatEstimate = (plan) => {
-  if (plan.price_per_1m_tokens_cny == null) return "—";
-  return `¥${plan.price_per_1m_tokens_cny}`;
-};
-
-const badge = (label) => `<span class="badge">${escapeHtml(label)}</span>`;
-
-function planRow(plan) {
-  const rank = plan.rank_by_estimated_cost ?? plan.rank_by_monthly_price ?? "—";
-  const badges = [];
-  if (plan.stale) badges.push("上次抓取失败");
-  if (plan.tags.includes("free_trial")) badges.push("免费体验");
-  if (plan.rank_by_estimated_cost === 1) badges.push("估算成本最低");
-  if (plan.rank_by_monthly_price === 1) badges.push("月费最低");
-  return `
-    <tr>
-      <td data-label="排名" class="rank">${escapeHtml(rank)}</td>
-      <td data-label="平台 / 套餐">
-        <strong>${escapeHtml(plan.vendor)} · ${escapeHtml(plan.name)}</strong>
-        <span class="muted">${escapeHtml(plan.per === "member" ? "按成员计费" : plan.billing_option === "continuous_month" ? "连续包月" : "月付")}</span>
-        ${badges.length ? `<div class="badges">${badges.map(badge).join("")}</div>` : ""}
-      </td>
-      <td data-label="月费">${escapeHtml(formatMoney(plan))}</td>
-      <td data-label="DeepSeek 额度">${escapeHtml(formatUsage(plan))}</td>
-      <td data-label="估算额度">${plan.estimated_tokens_millions == null ? "—" : `${escapeHtml(plan.estimated_tokens_millions)}M tokens`}</td>
-      <td data-label="估算成本">${escapeHtml(formatEstimate(plan))}</td>
-      <td data-label="置信度">${escapeHtml(confidenceLabels[plan.confidence] ?? "—")}</td>
-      <td data-label="说明">${escapeHtml(plan.notes || "—")}</td>
-    </tr>
-  `;
-}
-
-function sourceRow(source) {
-  return `
-    <tr>
-      <td data-label="来源"><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.name)}</a></td>
-      <td data-label="状态">${source.status === "ok" ? "抓取成功" : "抓取失败"}</td>
-      <td data-label="时间">${escapeHtml(source.fetched_at || source.verified_at || "—")}</td>
-      <td data-label="备注">${escapeHtml(source.message || `收录 ${source.plans_count ?? 0} 个套餐`)}</td>
-    </tr>
-  `;
-}
-
-function faqItems() {
-  return [
-    {
-      q: "现在最便宜的 DeepSeek Flash 套餐是哪一个？",
-      a: "页面同时看两个口径：月费最低看已收录的付费订阅；单位成本最低看折算后的 ¥/1M tokens。不同平台额度和模型范围不同，建议先看口径再选套餐。"
-    },
-    {
-      q: "DeepSeek Flash 官方价格怎么算？",
-      a: "官方 API 按 token 计费，错峰和高峰价不同；本站用错峰输入和输出的 50:50 组合价作为参考，不预测实际请求比例。"
-    },
-    {
-      q: "WorkBuddy 的积分为什么有低置信度？",
-      a: "WorkBuddy 公开的是积分，不是固定 token 数。Tokenkoi 的社区实测给出约 600,000 tokens/credit 的换算，但实际会随缓存命中率和任务结构变化。"
-    },
-    {
-      q: "数据多久更新一次？",
-      a: "GitHub Actions 默认每 6 小时抓取一次；如果某次抓取失败，数据会保留并标记为 stale，下一次成功后自动恢复。"
-    }
-  ];
-}
-
-function jsonLd(document, origin, config) {
-  const siteUrl = `${origin}/`;
+function jsonLd(config) {
+  const dataset = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "70 元 DeepSeek Flash 套餐 token 对比",
+    description: "OpenCode Go、Command Code GOAT、WorkBuddy 标准版在同样 70 元 / $10 档位的大致 token 数与撞墙说明。",
+    url: "https://j4tmr.github.io/cheapest-deepseek-plan/",
+    sameAs: `https://github.com/${config.repository}`,
+    license: "https://opensource.org/licenses/MIT",
+    creator: { "@type": "Organization", name: config.name }
+  };
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -105,49 +77,15 @@ function jsonLd(document, origin, config) {
       acceptedAnswer: { "@type": "Answer", text: item.a }
     }))
   };
-  const dataset = {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    name: "Cheapest DeepSeek Flash Plans",
-    description: "WorkBuddy、OpenCode、Command Code 与 DeepSeek 官方 API 的 DeepSeek V4.1 Flash 价格快照。",
-    url: siteUrl,
-    sameAs: `https://github.com/${config.repository}`,
-    license: "https://opensource.org/licenses/MIT",
-    dateModified: document.updated_at,
-    creator: { "@type": "Organization", name: config.name },
-    distribution: {
-      "@type": "DataDownload",
-      encodingFormat: "application/json",
-      contentUrl: `${origin}/data/pricing.json`
-    }
-  };
-  return [dataset, faq].map((item) => `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, "\\u003c")}</script>`).join("\n");
+  return [dataset, faq]
+    .map((item) => `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, "\\u003c")}</script>`)
+    .join("\n");
 }
 
-export function renderIndex({ document, config, origin }) {
+export function renderIndex({ config, origin }) {
   const siteUrl = `${origin}/`;
-  const title = "DeepSeek Flash 最便宜套餐对比 | WorkBuddy · OpenCode · Command Code · 官方 API";
-  const description = "自动追踪 WorkBuddy、OpenCode、Command Code 和 DeepSeek 官方 API 的最新 Flash 套餐价格，按月费、额度和估算 token 成本排序。";
-  const plans = [...document.plans]
-    .filter((plan) => plan.kind !== "api_baseline")
-    .sort((a, b) => (a.rank_by_estimated_cost ?? 999) - (b.rank_by_estimated_cost ?? 999) || (a.rank_by_monthly_price ?? 999) - (b.rank_by_monthly_price ?? 999));
-  const official = document.plans.find((plan) => plan.kind === "api_baseline");
-  const sources = document.sources ?? [];
-  const faq = faqItems();
-  const recommendation = (label, value, note) => `
-    <article class="card">
-      <p class="eyebrow">${escapeHtml(label)}</p>
-      <p class="value">${escapeHtml(value)}</p>
-      <p class="muted">${escapeHtml(note)}</p>
-    </article>
-  `;
-  const planName = (id) => {
-    const plan = document.plans.find((item) => item.id === id);
-    return plan ? `${plan.vendor} ${plan.name}` : "—";
-  };
-  const lowestMonthly = document.recommendations?.lowest_monthly_price;
-  const lowestEstimate = document.recommendations?.lowest_estimated_unit_cost;
-  const freeTrial = document.recommendations?.free_trial;
+  const title = "70 元 DeepSeek Flash 套餐对比：大概能跑多少 token、哪里会撞墙";
+  const description = "OpenCode Go、Command Code GOAT、WorkBuddy 标准版：同样 10 美元 / 70 元，大概能用多少 DeepSeek Flash token，5 小时和周限额哪里会撞墙。";
 
   return `<!doctype html>
 <html lang="${escapeHtml(config.locale)}">
@@ -176,7 +114,7 @@ export function renderIndex({ document, config, origin }) {
   <meta name="twitter:description" content="${escapeHtml(description)}">
   <meta name="twitter:image" content="${escapeHtml(origin)}/social.svg">
   <link rel="stylesheet" href="styles.css">
-  ${jsonLd(document, origin, config)}
+  ${jsonLd(config)}
 </head>
 <body>
   <a class="skip" href="#plans">跳到套餐表</a>
@@ -184,27 +122,32 @@ export function renderIndex({ document, config, origin }) {
     <div class="shell header-row">
       <a class="brand" href="./">Cheapest DeepSeek Plan</a>
       <nav aria-label="站内导航">
-        <a href="#plans">套餐表</a>
-        <a href="#method">口径</a>
-        <a href="#sources">来源</a>
-        <a href="#faq">FAQ</a>
+        <a href="#plans">token 对比</a>
+        <a href="#wall">撞墙</a>
+        <a href="#method">数字怎么来的</a>
       </nav>
     </div>
   </header>
   <main>
     <section class="hero">
       <div class="shell">
-        <p class="eyebrow">GitHub Actions 每 6 小时更新</p>
-        <h1>DeepSeek Flash 最便宜套餐对比</h1>
+        <p class="eyebrow">同样 10 美元 / 70 元这一档</p>
+        <h1>70 元 DeepSeek Flash，大概能跑多少 token？</h1>
         <p class="lede">
-          聚焦 <strong>${escapeHtml(document.focus_model.version)}</strong>，对比 WorkBuddy、OpenCode、Command Code 与官方 API。
-          每条记录都保留来源、核验时间和折算假设。
+          只比三家：<strong>OpenCode Go</strong>、<strong>Command Code GOAT</strong>、<strong>WorkBuddy 标准版</strong>。
+          看大概 token 数，也看 5 小时 / 每周限额会在哪里撞墙。
         </p>
         <div class="cards">
-          ${recommendation("月费最低", planName(lowestMonthly?.plan_id), lowestMonthly?.reason || "暂无可比套餐")}
-          ${recommendation("估算成本最低", planName(lowestEstimate?.plan_id), lowestEstimate?.reason || "暂无可比套餐")}
-          ${recommendation("免费体验", planName(freeTrial?.plan_id), freeTrial?.reason || "暂无公开免费档")}
-          ${recommendation("官方按量基准", "DeepSeek 官方 API", `错峰 50:50 综合约 $${document.recommendations?.api_baseline?.balanced_off_peak_usd_per_1m_tokens ?? "—"}/1M tokens`)}
+          ${focusPlans
+            .map(
+              (plan) => `
+          <article class="card">
+            <p class="eyebrow">${escapeHtml(plan.name)}</p>
+            <p class="value">${escapeHtml(plan.tokens)}</p>
+            <p class="muted">${escapeHtml(plan.tokensNote)} · ${escapeHtml(plan.price)}</p>
+          </article>`
+            )
+            .join("")}
         </div>
       </div>
     </section>
@@ -212,78 +155,97 @@ export function renderIndex({ document, config, origin }) {
     <section id="plans" class="section">
       <div class="shell">
         <div class="section-head">
-          <h2>套餐对比</h2>
-          <p>更新时间：${escapeHtml(document.updated_at)}；最近检查：${escapeHtml(document.checked_at)}</p>
+          <h2>同样 70 元，大概能跑多少 token</h2>
+          <p>按你 2026-10-14 至 10-30 的实际用量和缓存命中率估算，单位约等于“含缓存 token”。</p>
         </div>
-        <div class="table-wrap" role="region" aria-label="DeepSeek Flash 套餐对比" tabindex="0">
+        <div class="table-wrap" role="region" aria-label="70 元 DeepSeek Flash 套餐 token 对比" tabindex="0">
           <table>
-            <caption>DeepSeek Flash 订阅套餐估算成本表。不同平台的额度不可直接互换，请结合口径和说明阅读。</caption>
+            <caption>三家的官方额度、实测估算 token 数和缓存命中率。</caption>
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">平台 / 套餐</th>
+                <th scope="col">套餐</th>
                 <th scope="col">月费</th>
-                <th scope="col">DeepSeek 额度</th>
-                <th scope="col">估算额度</th>
-                <th scope="col">估算 ¥/1M tokens</th>
-                <th scope="col">置信度</th>
-                <th scope="col">说明</th>
+                <th scope="col">官方额度</th>
+                <th scope="col">大概 token</th>
+                <th scope="col">缓存命中率</th>
               </tr>
             </thead>
-            <tbody>${plans.map(planRow).join("")}</tbody>
+            <tbody>
+              ${focusPlans
+                .map(
+                  (plan) => `
+              <tr>
+                <td><strong>${escapeHtml(plan.name)}</strong></td>
+                <td>${escapeHtml(plan.price)}</td>
+                <td>${escapeHtml(plan.quota)}</td>
+                <td><strong>${escapeHtml(plan.tokens)}</strong> <span class="muted">${escapeHtml(plan.tokensNote)}</span></td>
+                <td>${escapeHtml(plan.cache)}</td>
+              </tr>`
+                )
+                .join("")}
+            </tbody>
           </table>
         </div>
-        <p class="muted">官方 API 基准：错峰输入 $${escapeHtml(document.focus_model.pricing.input_cache_miss.off_peak)}、输出 $${escapeHtml(document.focus_model.pricing.output.off_peak)} / 1M tokens；高峰分别 $${escapeHtml(document.focus_model.pricing.input_cache_miss.peak)}、$${escapeHtml(document.focus_model.pricing.output.peak)}。</p>
       </div>
     </section>
 
-    <section id="method" class="section alt">
+    <section id="wall" class="section alt">
       <div class="shell">
-        <h2>口径与限制</h2>
-        <div class="method-grid">
-          <article>
-            <h3>月费最低</h3>
-            <p>只比较已收录且包含 DeepSeek Flash 的付费订阅。汇率来自同一快照，避免跨币种硬拼。</p>
-          </article>
-          <article>
-            <h3>估算成本最低</h3>
-            <p>OpenCode 和 Command Code 用官方美元额度 ÷ Flash 官方错峰综合价；WorkBuddy 用积分换算假设。</p>
-          </article>
-          <article>
-            <h3>不确定就标出来</h3>
-            <p>抓取失败保留旧数据并标记 <code>stale</code>；额度单位不同时不用假汇率强行折算。</p>
-          </article>
+        <div class="section-head">
+          <h2>撞墙点</h2>
+          <p>月额度不等于随时都能用完。高频使用时，先卡住的往往是 5 小时或每周窗口。</p>
         </div>
-      </div>
-    </section>
-
-    <section id="sources" class="section">
-      <div class="shell">
-        <h2>来源状态</h2>
-        <div class="table-wrap" role="region" aria-label="价格来源状态" tabindex="0">
+        <div class="table-wrap" role="region" aria-label="套餐限额与撞墙说明" tabindex="0">
           <table>
+            <caption>三家的公开限额与撞墙说明。</caption>
             <thead>
               <tr>
-                <th scope="col">来源</th><th scope="col">状态</th><th scope="col">时间</th><th scope="col">备注</th>
+                <th scope="col">套餐</th>
+                <th scope="col">公开限额</th>
+                <th scope="col">实际会怎么撞墙</th>
               </tr>
             </thead>
-            <tbody>${sources.map(sourceRow).join("")}</tbody>
+            <tbody>
+              ${focusPlans
+                .map(
+                  (plan) => `
+              <tr>
+                <td><strong>${escapeHtml(plan.name)}</strong></td>
+                <td>${escapeHtml(plan.limit)}</td>
+                <td>${escapeHtml(plan.wall)}</td>
+              </tr>`
+                )
+                .join("")}
+            </tbody>
           </table>
         </div>
+      </div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="shell">
+        <h2>数字怎么来的</h2>
+        <ul class="plain-list">
+          <li>样本：2026-10-14 至 10-30，三家一共 121,105 次成功调用。</li>
+          <li>按真实缓存命中率估算：OpenCode 93.09%、Command Code 92.40%、WorkBuddy 96.36%。</li>
+          <li>官方单价：输入 $0.15、输出 $0.60、缓存读取 $0.003 / 1M tokens；忙时价格翻倍。</li>
+          <li>月额度和 5 小时 / 周限额为 2026-10-30 官方页快照，之后可能调整。</li>
+          <li>完整计算过程和采样明细见<a href="${escapeHtml(ARTICLE_URL)}" rel="noopener">原文</a>。</li>
+        </ul>
       </div>
     </section>
 
     <section id="faq" class="section alt">
       <div class="shell">
         <h2>常见问题</h2>
-        ${faq.map((item) => `<details><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join("")}
+        ${faqItems().map((item) => `<details><summary>${escapeHtml(item.q)}</summary><p>${escapeHtml(item.a)}</p></details>`).join("")}
       </div>
     </section>
   </main>
   <footer>
     <div class="shell">
-      <p>价格与条款以各平台官方页为准。本项目不构成购买建议。</p>
-      <p><a href="data/pricing.json">JSON API</a> · <a href="sitemap.xml">Sitemap</a> · <a href="feed.xml">RSS</a> · <a href="https://github.com/${escapeHtml(config.repository)}">GitHub</a> · MIT</p>
+      <p>价格和限额以各平台官方页为准；token 数是实测估算，不是官方承诺。本项目不构成购买建议。</p>
+      <p><a href="${escapeHtml(ARTICLE_URL)}" rel="noopener">原文</a> · <a href="https://github.com/${escapeHtml(config.repository)}">GitHub</a> · MIT</p>
     </div>
   </footer>
 </body>
@@ -291,14 +253,13 @@ export function renderIndex({ document, config, origin }) {
 }
 
 export function renderSitemap(origin) {
-  const siteUrl = `${origin}/`;
   const today = new Date().toISOString().slice(0, 10);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${siteUrl}</loc>
+    <loc>${origin}/</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>
@@ -307,24 +268,15 @@ export function renderSitemap(origin) {
 
 export function renderFeed(document, origin) {
   const siteUrl = `${origin}/`;
-  const title = "Cheapest DeepSeek Plan";
-  const description = "DeepSeek Flash plan pricing snapshot.";
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>${escapeHtml(title)}</title>
+    <title>70 元 DeepSeek Flash 套餐 token 对比</title>
     <link>${siteUrl}</link>
-    <description>${escapeHtml(description)}</description>
+    <description>OpenCode Go、Command Code GOAT、WorkBuddy 标准版的大致 token 数与撞墙说明。</description>
     <language>zh-cn</language>
     <pubDate>${new Date(document.updated_at).toUTCString()}</pubDate>
     <lastBuildDate>${new Date(document.updated_at).toUTCString()}</lastBuildDate>
-    <item>
-      <title>DeepSeek Flash pricing snapshot ${escapeHtml(document.updated_at)}</title>
-      <link>${siteUrl}</link>
-      <guid>${siteUrl}#${document.updated_at}</guid>
-      <pubDate>${new Date(document.updated_at).toUTCString()}</pubDate>
-      <description>${escapeHtml(description)}</description>
-    </item>
   </channel>
 </rss>
 `;
@@ -339,20 +291,19 @@ Sitemap: ${origin}/sitemap.xml
 }
 
 export function renderLlms(document, origin, config) {
-  const siteUrl = `${origin}/`;
   return `# ${config.name}
 
-> ${document.focus_model.version} 价格快照，更新于 ${document.updated_at}。
+> 同样 70 元 / $10，DeepSeek Flash 大概能跑多少 token，哪里会撞墙。
 
 ## 数据
 
-- JSON API: ${origin}/data/pricing.json
-- HTML: ${siteUrl}
+- HTML: ${origin}/
+- 原文: ${ARTICLE_URL}
 - License: MIT
 
 ## 主题
 
-DeepSeek Flash 套餐对比、WorkBuddy、OpenCode、Command Code、官方 API 按量计费。
+OpenCode Go、Command Code GOAT、WorkBuddy 标准版，DeepSeek Flash token 估算与 5 小时 / 每周限额。
 `;
 }
 
@@ -360,7 +311,7 @@ export function renderManifest(config) {
   return JSON.stringify(
     {
       name: config.name,
-      short_name: "DeepSeek Plans",
+      short_name: "DeepSeek 70 元",
       start_url: ".",
       display: "minimal-ui",
       background_color: "#fff8ef",
