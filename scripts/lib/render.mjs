@@ -144,7 +144,6 @@ const copyByLocale = {
     eyebrow: "同样 10 美元 / 70 元这一档",
     h1: "最便宜的 DeepSeek 套餐？70 元档 Flash token 对比",
     lede: "只比三家：<strong>OpenCode Go</strong>、<strong>Command Code GOAT</strong>、<strong>WorkBuddy 标准版</strong>。看大概 token 数，也看 5 小时 / 每周限额会在哪里撞墙。",
-    dataNote: "数据截至 2026-10-30，官方调价后这里不会自动跟着变，下单前以各平台官方页为准。",
     verdict: "结论：同样约 70 元，<strong>OpenCode Go 的估算 token 最多（约 33 亿）</strong>，但更容易先撞 5 小时墙；Command Code GOAT 约 31 亿；WorkBuddy 约 24 亿，不撞时间窗口，积分用完为止。",
     plansTitle: "同样 70 元，大概能跑多少 token",
     plansIntro: "按作者 2026-10-14 至 10-30 的实测用量和缓存命中率估算，单位约等于“含缓存 token”。",
@@ -201,7 +200,6 @@ const copyByLocale = {
     eyebrow: "The same $10 / ¥70 tier",
     h1: "What is the cheapest DeepSeek plan? Three $10 Flash plans compared",
     lede: "We compare only three plans: <strong>OpenCode Go</strong>, <strong>Command Code GOAT</strong>, and <strong>WorkBuddy Standard</strong>. See the estimated DeepSeek Flash tokens and where the 5-hour and weekly usage walls hit.",
-    dataNote: "Data as of October 30, 2026. Prices and limits can change; confirm on each provider's official page before buying.",
     verdict: "Bottom line: at about $10/month, <strong>OpenCode Go has the highest estimated token count (~3.3B)</strong>, but it is the easiest to hit the 5-hour wall. Command Code GOAT is close at ~3.1B. WorkBuddy offers ~2.4B with no time-window wall, but stops when its credits run out.",
     plansTitle: "How many DeepSeek Flash tokens do you get for about $10?",
     plansIntro: "Estimated from the author's measured usage and cache-hit rates between October 14 and 30, 2026. Token counts include cached tokens.",
@@ -229,7 +227,7 @@ const copyByLocale = {
   }
 };
 
-function jsonLd({ config, copy, faqs, plans, siteUrl }) {
+function jsonLd({ config, copy, faqs, plans, siteUrl, asOfDate }) {
   const dataset = {
     "@context": "https://schema.org",
     "@type": "Dataset",
@@ -239,7 +237,7 @@ function jsonLd({ config, copy, faqs, plans, siteUrl }) {
     sameAs: `https://github.com/${config.repository}`,
     license: "https://opensource.org/licenses/MIT",
     inLanguage: copy.lang,
-    dateModified: "2026-10-30",
+    dateModified: asOfDate,
     keywords: copy.keywordList,
     variableMeasured: plans.map((plan) => `${plan.name}: ${plan.tokens}`),
     creator: { "@type": "Organization", name: config.name }
@@ -259,20 +257,33 @@ function jsonLd({ config, copy, faqs, plans, siteUrl }) {
     .join("\n");
 }
 
-export function renderIndex({ config, origin, locale = "zh-CN", workbuddyUrl = WORKBUDDY_FALLBACK_URL }) {
+export function renderIndex({ config, document, origin, locale = "zh-CN", workbuddyUrl = WORKBUDDY_FALLBACK_URL }) {
   const copy = copyByLocale[locale] ?? copyByLocale["zh-CN"];
   const plans = focusPlans[locale] ?? focusPlans["zh-CN"];
   const faqs = faqItems[locale] ?? faqItems["zh-CN"];
   const siteUrl = locale === "en" ? `${origin}/en/` : `${origin}/`;
   const zhUrl = `${origin}/`;
   const enUrl = `${origin}/en/`;
+  const asOfDate = /^\d{4}-\d{2}-\d{2}/.test(String(document.updated_at ?? ""))
+    ? String(document.updated_at).slice(0, 10)
+    : "2026-10-30";
+  const [asOfYear, asOfMonth] = asOfDate.split("-");
+  const asOfMonthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][
+    Number(asOfMonth) - 1
+  ] ?? "Oct";
+  const titleSuffix = locale === "en" ? ` (${asOfMonthName} ${asOfYear})` : `（${asOfYear}年${Number(asOfMonth)}月更新）`;
+  const pageTitle = `${copy.title}${titleSuffix}`;
+  const h1Text = `${copy.h1}${titleSuffix}`;
+  const dataNote = locale === "en"
+    ? `Data as of ${asOfDate}; prices are checked daily against official pages. Token counts are measured estimates from October 14-30, 2026 — confirm on each provider's official page before buying.`
+    : `数据截至 ${asOfDate}，每日自动核对官方价；token 数为 2026-10-14 至 10-30 实测估算，下单前以各平台官方页为准。`;
 
   return `<!doctype html>
 <html lang="${escapeHtml(copy.lang)}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${escapeHtml(copy.title)}</title>
+  <title>${escapeHtml(pageTitle)}</title>
   <meta name="description" content="${escapeHtml(copy.description)}">
   <meta name="keywords" content="${escapeHtml(copy.keywords)}">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -288,7 +299,7 @@ export function renderIndex({ config, origin, locale = "zh-CN", workbuddyUrl = W
   <link rel="icon" href="${copy.assetBase}favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${escapeHtml(config.name)}">
-  <meta property="og:title" content="${escapeHtml(copy.title)}">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
   <meta property="og:description" content="${escapeHtml(copy.description)}">
   <meta property="og:url" content="${escapeHtml(siteUrl)}">
   <meta property="og:locale" content="${copy.ogLocale}">
@@ -299,14 +310,14 @@ export function renderIndex({ config, origin, locale = "zh-CN", workbuddyUrl = W
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="${escapeHtml(copy.ogImageAlt)}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${escapeHtml(copy.title)}">
+  <meta name="twitter:title" content="${escapeHtml(pageTitle)}">
   <meta name="twitter:description" content="${escapeHtml(copy.description)}">
   <meta name="twitter:image" content="${escapeHtml(origin)}/social.png">
   <meta name="twitter:image:alt" content="${escapeHtml(copy.ogImageAlt)}">
   <meta name="author" content="4qin">
   <link rel="author" href="https://www.4qin.com/">
   <link rel="stylesheet" href="${copy.assetBase}styles.css">
-  ${jsonLd({ config, copy, faqs, plans, siteUrl })}
+  ${jsonLd({ config, copy: { ...copy, title: pageTitle }, faqs, plans, siteUrl, asOfDate })}
 </head>
 <body>
   <a class="skip" href="#plans">${escapeHtml(copy.skip)}</a>
@@ -334,9 +345,9 @@ export function renderIndex({ config, origin, locale = "zh-CN", workbuddyUrl = W
     <section class="hero">
       <div class="shell">
         <p class="eyebrow">${escapeHtml(copy.eyebrow)}</p>
-        <h1>${escapeHtml(copy.h1)}</h1>
+        <h1>${escapeHtml(h1Text)}</h1>
         <p class="lede">${copy.lede}</p>
-        <p class="muted">${escapeHtml(copy.dataNote)}</p>
+        <p class="muted">${escapeHtml(dataNote)}</p>
         <p class="verdict">${copy.verdict}</p>
         <div class="cards">
           ${plans
@@ -456,12 +467,12 @@ export function renderIndex({ config, origin, locale = "zh-CN", workbuddyUrl = W
 </html>`;
 }
 
-export function renderSitemap(origin) {
+export function renderSitemap(origin, asOfDate = "2026-10-30") {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>${origin}/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>${asOfDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="${origin}/"/>
@@ -470,7 +481,7 @@ export function renderSitemap(origin) {
   </url>
   <url>
     <loc>${origin}/en/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>${asOfDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="${origin}/"/>

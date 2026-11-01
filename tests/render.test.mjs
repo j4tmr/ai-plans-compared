@@ -98,6 +98,8 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /<meta property="og:url" content="https:\/\/example\.com\/">/);
   assert.match(html, /<a class="brand" href="\.\/"/);
   assert.match(html, /最便宜的 DeepSeek 套餐/);
+  assert.match(html, /（2026年11月更新）/);
+  assert.match(html, /每日自动核对官方价/);
   assert.match(html, /结论：同样约 70 元/);
   assert.match(html, /Command Code GOAT/);
   assert.match(html, /约 33 亿/);
@@ -119,7 +121,7 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /rel="nofollow sponsored noopener"/);
   assert.match(html, /social\.png/);
   assert.match(html, /og:image:width" content="1200"/);
-  assert.match(html, /"dateModified":"2026-10-30"/);
+  assert.match(html, /"dateModified":"2026-11-01"/);
   assert.match(html, /"keywords":\["最便宜的 DeepSeek 套餐"/);
 });
 
@@ -128,6 +130,7 @@ test("renders a full English page with hreflang and localized promos", () => {
   assert.match(html, /<html lang="en">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/example\.com\/en\/">/);
   assert.match(html, /Cheapest DeepSeek Plan\? \$10 DeepSeek Flash Token Limits Compared/);
+  assert.match(html, /\(Nov 2026\)/);
   assert.match(html, /What is the cheapest DeepSeek plan/);
   assert.match(html, /Bottom line: at about \$10\/month/);
   assert.match(html, /≈3\.3B/);
@@ -142,7 +145,7 @@ test("renders a full English page with hreflang and localized promos", () => {
 });
 
 test("sitemap includes both languages with xhtml alternates", () => {
-  const sitemap = renderSitemap("https://example.com");
+  const sitemap = renderSitemap("https://example.com", "2026-11-01");
   assert.match(sitemap, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
   assert.match(sitemap, /<loc>https:\/\/example\.com\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/example\.com\/en\/<\/loc>/);
