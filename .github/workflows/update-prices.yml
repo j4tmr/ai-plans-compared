@@ -22,8 +22,6 @@ jobs:
       - run: npm ci
       - run: npm run update
       - run: npm run build
-        env:
-          WORKBUDDY_INVITE_CODE: ${{ secrets.WORKBUDDY_INVITE_CODE }}
       - name: Commit refreshed data
         id: commit
         run: |

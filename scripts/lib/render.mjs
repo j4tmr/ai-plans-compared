@@ -9,7 +9,7 @@ const escapeHtml = (value) =>
 const ARTICLE_URL = "https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030";
 const LMVPN_URL = "https://lmvpn.4tmr.com/";
 const API88_URL = "https://88api.ai/sign-up?aff=dlVM";
-const WORKBUDDY_FALLBACK_URL = "https://www.workbuddy.cn/";
+const WORKBUDDY_URL = "https://www.workbuddy.cn/events/invite?inviteCode=6ueawbhr4";
 
 // 来自《70 元 DeepSeek 三套餐对比》原文的实测结论。
 const focusPlans = {
@@ -257,7 +257,7 @@ function jsonLd({ config, copy, faqs, plans, siteUrl, asOfDate }) {
     .join("\n");
 }
 
-export function renderIndex({ config, document, origin, locale = "zh-CN", workbuddyUrl = WORKBUDDY_FALLBACK_URL }) {
+export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
   const copy = copyByLocale[locale] ?? copyByLocale["zh-CN"];
   const plans = focusPlans[locale] ?? focusPlans["zh-CN"];
   const faqs = faqItems[locale] ?? faqItems["zh-CN"];
@@ -359,7 +359,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN", workbu
             <p class="muted">${escapeHtml(plan.tokensNote)} · ${escapeHtml(plan.price)}</p>
             ${
               plan.invite
-                ? `<a class="card-invite" href="${escapeHtml(workbuddyUrl)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.workbuddyInviteAria)}">${escapeHtml(copy.workbuddyInvite)} <span aria-hidden="true">→</span></a>`
+                ? `<a class="card-invite" href="${escapeHtml(WORKBUDDY_URL)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.workbuddyInviteAria)}">${escapeHtml(copy.workbuddyInvite)} <span aria-hidden="true">→</span></a>`
                 : ""
             }
           </article>`

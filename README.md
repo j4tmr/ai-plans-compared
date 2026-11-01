@@ -9,6 +9,16 @@ The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token
 
 原文：https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030
 
+## 推广 Sponsored
+
+[![88API Claude 中转站：Opus / Sonnet / Haiku 全系模型，注册送测试额度](https://j4tmr.github.io/cheapest-deepseek-plan/88api-banner.svg)](https://88api.ai/sign-up?aff=dlVM)
+
+- [88API](https://88api.ai/sign-up?aff=dlVM)：Claude 中转站，Claude Code 直连，Opus / Sonnet / Haiku 全系模型可用，注册送测试额度。
+- [WorkBuddy](https://www.workbuddy.cn/events/invite?inviteCode=6ueawbhr4)：AI 办公助手，通过邀请注册可领 2000 积分。
+- [lmVPN 蓝莓加速器](https://lmvpn.4tmr.com/)：免费试用，日套餐 3 元起。
+
+> 以上为推广 / 联盟链接：通过链接注册可能为本项目带来返佣，不影响你的价格。
+
 ## 对比
 
 | 套餐 | 月费 | 官方额度 | 大概 token | 撞墙点 |
@@ -29,7 +39,7 @@ The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token
 
 - token 数是实测估算，不是官方承诺。
 - 价格和限额以各平台官方页为准。
-- 本项目与 DeepSeek、WorkBuddy、OpenCode、Command Code 均无隶属关系。
+- 本项目与 DeepSeek、WorkBuddy、OpenCode、Command Code、88API、lmVPN 均无隶属关系。
 
 ## 本地运行
 

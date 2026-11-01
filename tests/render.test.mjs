@@ -84,12 +84,7 @@ const config = {
 };
 
 test("renders the Chinese page with bilingual SEO and sponsored links", () => {
-  const html = renderIndex({
-    document,
-    config,
-    origin: "https://example.com",
-    workbuddyUrl: "https://www.workbuddy.cn/events/invite?inviteCode=testcode1"
-  });
+  const html = renderIndex({ document, config, origin: "https://example.com" });
   assert.match(html, /<html lang="zh-CN">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/example\.com\/">/);
   assert.match(html, /<link rel="alternate" hreflang="zh-CN" href="https:\/\/example\.com\/">/);
@@ -111,7 +106,7 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /lmvpn-banner\.svg/);
   assert.match(html, /lmvpn-banner-mobile\.svg/);
   assert.doesNotMatch(html, /lmvpn-banner\.gif/);
-  assert.match(html, /www\.workbuddy\.cn\/events\/invite\?inviteCode=testcode1/);
+  assert.match(html, /www\.workbuddy\.cn\/events\/invite\?inviteCode=[A-Za-z0-9_-]{4,64}/);
   assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);
   assert.match(html, /88api-banner\.svg/);
   assert.match(html, /88api-banner-mobile\.svg/);
