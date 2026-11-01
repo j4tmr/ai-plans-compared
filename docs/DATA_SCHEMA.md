@@ -23,6 +23,7 @@
 | `price_period` | `month` or `year`; normalized monthly price uses this. |
 | `billing_option` | For WorkBuddy, `continuous_month` is preferred over the list-price `monthly`. |
 | `included_usage` | The plan's general quota, if published. |
+| `usage_windows` | Object or null. Parsed usage-window limits (`five_hour` / `weekly` as `{ kind, value }`); null when the vendor page does not publish them. |
 | `model_usage` | The quota tied specifically to DeepSeek V4.1 Flash when the vendor publishes one. |
 | `usage_value_multiplier` | For dollar-value quotas: included dollars divided by monthly price. |
 | `estimated_tokens_millions` | Estimated million tokens implied by the documented quota and assumptions. |

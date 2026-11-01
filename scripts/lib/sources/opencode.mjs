@@ -22,8 +22,24 @@ function monthlyFlashLimit($, panel) {
   return toNumber(row.at(-1) ?? "");
 }
 
+// Usage-window percentages live in a prose sentence, e.g.
+// "usage limits: 5-hour — 20% of the monthly limit; weekly — 50%; and monthly — 100%."
+// Fail open: vendors rewording the sentence must not break the daily refresh.
+function parseUsageWindows($) {
+  const text = $("body").text().replace(/\s+/g, " ");
+  const match = text.match(
+    /5[-\s]hour\s*[—–-]\s*(\d{1,3})\s*%(?:\s*of\s+(?:the|your)\s+monthly\s+limit)?\s*[;；]\s*weekly\s*[—–-]\s*(\d{1,3})\s*%/i
+  );
+  if (!match) return null;
+  return {
+    five_hour: { kind: "pct_of_monthly", value: Number(match[1]) },
+    weekly: { kind: "pct_of_monthly", value: Number(match[2]) }
+  };
+}
+
 export function parseOpenCode(html, checkedAt) {
   const $ = loadHtml(html);
+  const usageWindows = parseUsageWindows($);
   const table = findTable(
     $,
     (rows) => rows[0]?.[0] === "Plan" && rows[0]?.[1] === "Price" && rows[0]?.some((cell) => cell.includes("usage"))
@@ -62,6 +78,7 @@ export function parseOpenCode(html, checkedAt) {
           window: "month",
           note: "DeepSeek V4.1 Flash 每月额度"
         },
+        usage_windows: usageWindows,
         method: "included_value_to_tokens",
         available: true,
         verified_at: checkedAt,

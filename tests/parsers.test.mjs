@@ -53,6 +53,7 @@ test("parses WorkBuddy free and continuous-month prices", () => {
 
 const opencodeHtml = `
   <html><body>
+    <p>Each model has the following usage limits: 5-hour — 20% of the monthly limit; weekly — 50%; and monthly — 100%.</p>
     <table><tr><th>Plan</th><th>Price</th><th>Included usage</th></tr>
       <tr><td>Go</td><td>$10/month</td><td>Lower-cost access</td></tr>
     </table>
@@ -68,6 +69,16 @@ test("parses OpenCode DeepSeek Flash monthly limit", () => {
   assert.equal(plans.length, 1);
   assert.equal(plans[0].price, 10);
   assert.equal(plans[0].model_usage.amount, 100);
+  assert.deepEqual(plans[0].usage_windows, {
+    five_hour: { kind: "pct_of_monthly", value: 20 },
+    weekly: { kind: "pct_of_monthly", value: 50 }
+  });
+});
+
+test("OpenCode usage windows fail open when the sentence is missing", () => {
+  const withoutWindows = opencodeHtml.replace(/<p>Each model[\s\S]*?<\/p>/, "");
+  const { plans } = parseOpenCode(withoutWindows, "2026-11-01");
+  assert.equal(plans[0].usage_windows, null);
 });
 
 const commandcodeHtml = `

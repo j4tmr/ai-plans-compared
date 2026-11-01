@@ -292,6 +292,15 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
     }
     return plan.quota;
   };
+  const displayLimit = (plan) => {
+    const windows = (plan.planId ? dataPlans.get(plan.planId) : undefined)?.usage_windows;
+    const five = windows?.five_hour?.kind === "pct_of_monthly" ? windows.five_hour.value : null;
+    const week = windows?.weekly?.kind === "pct_of_monthly" ? windows.weekly.value : null;
+    if (five == null || week == null) return plan.limit;
+    return locale === "en"
+      ? `${five}% of the monthly limit per 5 hours; ${week}% per week`
+      : `5 小时最多用当月额度的 ${five}%，每周最多 ${week}%`;
+  };
   const siteUrl = locale === "en" ? `${origin}/en/` : `${origin}/`;
   const zhUrl = `${origin}/`;
   const enUrl = `${origin}/en/`;
@@ -461,7 +470,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
                   (plan) => `
               <tr>
                 <td><strong>${escapeHtml(plan.name)}</strong></td>
-                <td>${escapeHtml(plan.limit)}</td>
+                <td>${escapeHtml(displayLimit(plan))}</td>
                 <td>${escapeHtml(plan.wall)}</td>
               </tr>`
                 )
