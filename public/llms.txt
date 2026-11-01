@@ -5,7 +5,7 @@
 ## 数据
 
 - JSON API: https://j4tmr.github.io/cheapest-deepseek-plan/data/pricing.json
-- HTML: https://j4tmr.github.io/cheapest-deepseek-plan
+- HTML: https://j4tmr.github.io/cheapest-deepseek-plan/
 - License: MIT
 
 ## 主题

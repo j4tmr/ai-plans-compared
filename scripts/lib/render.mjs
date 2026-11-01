@@ -95,6 +95,7 @@ function faqItems() {
 }
 
 function jsonLd(document, origin, config) {
+  const siteUrl = `${origin}/`;
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -109,7 +110,7 @@ function jsonLd(document, origin, config) {
     "@type": "Dataset",
     name: "Cheapest DeepSeek Flash Plans",
     description: "WorkBuddy、OpenCode、Command Code 与 DeepSeek 官方 API 的 DeepSeek V4.1 Flash 价格快照。",
-    url: origin,
+    url: siteUrl,
     sameAs: `https://github.com/${config.repository}`,
     license: "https://opensource.org/licenses/MIT",
     dateModified: document.updated_at,
@@ -124,6 +125,7 @@ function jsonLd(document, origin, config) {
 }
 
 export function renderIndex({ document, config, origin }) {
+  const siteUrl = `${origin}/`;
   const title = "DeepSeek Flash 最便宜套餐对比 | WorkBuddy · OpenCode · Command Code · 官方 API";
   const description = "自动追踪 WorkBuddy、OpenCode、Command Code 和 DeepSeek 官方 API 的最新 Flash 套餐价格，按月费、额度和估算 token 成本排序。";
   const plans = [...document.plans]
@@ -156,7 +158,7 @@ export function renderIndex({ document, config, origin }) {
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#fff8ef">
-  <link rel="canonical" href="${escapeHtml(origin)}">
+  <link rel="canonical" href="${escapeHtml(siteUrl)}">
   <link rel="alternate" type="application/json" href="${escapeHtml(origin)}/data/pricing.json">
   <link rel="alternate" type="application/rss+xml" title="DeepSeek Flash pricing updates" href="${escapeHtml(origin)}/feed.xml">
   <link rel="sitemap" type="application/xml" href="${escapeHtml(origin)}/sitemap.xml">
@@ -166,7 +168,7 @@ export function renderIndex({ document, config, origin }) {
   <meta property="og:site_name" content="${escapeHtml(config.name)}">
   <meta property="og:title" content="${escapeHtml(title)}">
   <meta property="og:description" content="${escapeHtml(description)}">
-  <meta property="og:url" content="${escapeHtml(origin)}">
+  <meta property="og:url" content="${escapeHtml(siteUrl)}">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:image" content="${escapeHtml(origin)}/social.svg">
   <meta name="twitter:card" content="summary_large_image">
@@ -180,7 +182,7 @@ export function renderIndex({ document, config, origin }) {
   <a class="skip" href="#plans">跳到套餐表</a>
   <header>
     <div class="shell header-row">
-      <a class="brand" href="/">Cheapest DeepSeek Plan</a>
+      <a class="brand" href="./">Cheapest DeepSeek Plan</a>
       <nav aria-label="站内导航">
         <a href="#plans">套餐表</a>
         <a href="#method">口径</a>
@@ -289,13 +291,14 @@ export function renderIndex({ document, config, origin }) {
 }
 
 export function renderSitemap(origin) {
+  const siteUrl = `${origin}/`;
   const today = new Date().toISOString().slice(0, 10);
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>${origin}</loc>
+    <loc>${siteUrl}</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>hourly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>
@@ -303,21 +306,22 @@ export function renderSitemap(origin) {
 }
 
 export function renderFeed(document, origin) {
+  const siteUrl = `${origin}/`;
   const title = "Cheapest DeepSeek Plan";
   const description = "DeepSeek Flash plan pricing snapshot.";
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>${escapeHtml(title)}</title>
-    <link>${origin}</link>
+    <link>${siteUrl}</link>
     <description>${escapeHtml(description)}</description>
     <language>zh-cn</language>
     <pubDate>${new Date(document.updated_at).toUTCString()}</pubDate>
     <lastBuildDate>${new Date(document.updated_at).toUTCString()}</lastBuildDate>
     <item>
       <title>DeepSeek Flash pricing snapshot ${escapeHtml(document.updated_at)}</title>
-      <link>${origin}</link>
-      <guid>${origin}#${document.updated_at}</guid>
+      <link>${siteUrl}</link>
+      <guid>${siteUrl}#${document.updated_at}</guid>
       <pubDate>${new Date(document.updated_at).toUTCString()}</pubDate>
       <description>${escapeHtml(description)}</description>
     </item>
@@ -335,6 +339,7 @@ Sitemap: ${origin}/sitemap.xml
 }
 
 export function renderLlms(document, origin, config) {
+  const siteUrl = `${origin}/`;
   return `# ${config.name}
 
 > ${document.focus_model.version} 价格快照，更新于 ${document.updated_at}。
@@ -342,7 +347,7 @@ export function renderLlms(document, origin, config) {
 ## 数据
 
 - JSON API: ${origin}/data/pricing.json
-- HTML: ${origin}
+- HTML: ${siteUrl}
 - License: MIT
 
 ## 主题

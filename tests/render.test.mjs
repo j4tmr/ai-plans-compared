@@ -85,8 +85,9 @@ const config = {
 
 test("renders SEO-critical head tags and plan rows", () => {
   const html = renderIndex({ document, config, origin: "https://example.com" });
-  assert.match(html, /<link rel="canonical" href="https:\/\/example\.com">/);
-  assert.match(html, /<meta property="og:url" content="https:\/\/example\.com">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/example\.com\/">/);
+  assert.match(html, /<meta property="og:url" content="https:\/\/example\.com\/">/);
+  assert.match(html, /<a class="brand" href="\.\/">/);
   assert.match(html, /Command Code · Go/);
   assert.match(html, /FAQPage/);
   assert.match(html, /DataDownload/);
