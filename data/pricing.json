@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "project": "ai-plans-compared",
-  "updated_at": "2026-11-01T07:50:18.439Z",
-  "checked_at": "2026-11-01T12:22:58.840Z",
+  "updated_at": "2026-11-01T15:39:14.165Z",
+  "checked_at": "2026-11-01T15:39:14.165Z",
   "focus_model": {
     "id": "deepseek-v4.1-flash",
     "official_api_name": "deepseek-flash",
@@ -50,7 +50,7 @@
       "name": "DeepSeek API 官方定价",
       "url": "https://api-docs.deepseek.com/quick_start/pricing/",
       "status": "ok",
-      "fetched_at": "2026-11-01T12:22:58.895Z",
+      "fetched_at": "2026-11-01T15:39:14.180Z",
       "plans_count": 0
     },
     {
@@ -59,7 +59,7 @@
       "name": "WorkBuddy 定价详情",
       "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
       "status": "ok",
-      "fetched_at": "2026-11-01T12:22:59.321Z",
+      "fetched_at": "2026-11-01T15:39:14.367Z",
       "plans_count": 4
     },
     {
@@ -68,7 +68,7 @@
       "name": "OpenCode Go plan",
       "url": "https://opencode.ai/v2/docs/console/go",
       "status": "ok",
-      "fetched_at": "2026-11-01T12:23:01.288Z",
+      "fetched_at": "2026-11-01T15:39:14.499Z",
       "plans_count": 3
     },
     {
@@ -77,7 +77,7 @@
       "name": "Command Code Pricing & Limits",
       "url": "https://commandcode.ai/docs/resources/pricing-limits",
       "status": "ok",
-      "fetched_at": "2026-11-01T12:23:01.446Z",
+      "fetched_at": "2026-11-01T15:39:19.132Z",
       "plans_count": 7
     }
   ],
@@ -127,6 +127,7 @@
         "note": "基础积分"
       },
       "model_usage": null,
+      "usage_windows": null,
       "usage_value_multiplier": null,
       "estimated_tokens_millions": 300,
       "price_per_1m_tokens": 0,
@@ -170,6 +171,7 @@
         "note": "基础积分加限时赠送积分"
       },
       "model_usage": null,
+      "usage_windows": null,
       "usage_value_multiplier": null,
       "estimated_tokens_millions": 2400,
       "price_per_1m_tokens": 0.029167,
@@ -213,6 +215,7 @@
         "note": "基础积分加限时赠送积分"
       },
       "model_usage": null,
+      "usage_windows": null,
       "usage_value_multiplier": null,
       "estimated_tokens_millions": 5400,
       "price_per_1m_tokens": 0.025926,
@@ -256,6 +259,7 @@
         "note": "基础积分加限时赠送积分"
       },
       "model_usage": null,
+      "usage_windows": null,
       "usage_value_multiplier": null,
       "estimated_tokens_millions": 30000,
       "price_per_1m_tokens": 0.023333,
@@ -303,6 +307,16 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": {
+        "five_hour": {
+          "kind": "pct_of_monthly",
+          "value": 20
+        },
+        "weekly": {
+          "kind": "pct_of_monthly",
+          "value": 50
+        }
+      },
       "usage_value_multiplier": 10,
       "estimated_tokens_millions": 266.67,
       "price_per_1m_tokens": 0.0375,
@@ -349,6 +363,16 @@
         "currency": "USD",
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
+      },
+      "usage_windows": {
+        "five_hour": {
+          "kind": "pct_of_monthly",
+          "value": 20
+        },
+        "weekly": {
+          "kind": "pct_of_monthly",
+          "value": 50
+        }
       },
       "usage_value_multiplier": 5,
       "estimated_tokens_millions": 533.33,
@@ -398,6 +422,16 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": {
+        "five_hour": {
+          "kind": "pct_of_monthly",
+          "value": 20
+        },
+        "weekly": {
+          "kind": "pct_of_monthly",
+          "value": 50
+        }
+      },
       "usage_value_multiplier": 5.25,
       "estimated_tokens_millions": 280,
       "price_per_1m_tokens": 0.071429,
@@ -445,6 +479,7 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": null,
       "usage_value_multiplier": 10,
       "estimated_tokens_millions": 26.67,
       "price_per_1m_tokens": 0.0375,
@@ -492,6 +527,7 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": null,
       "usage_value_multiplier": 10,
       "estimated_tokens_millions": 266.67,
       "price_per_1m_tokens": 0.0375,
@@ -539,6 +575,7 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": null,
       "usage_value_multiplier": 5.5,
       "estimated_tokens_millions": 293.33,
       "price_per_1m_tokens": 0.068182,
@@ -579,6 +616,7 @@
         "note": "Pay as you go"
       },
       "model_usage": null,
+      "usage_windows": null,
       "usage_value_multiplier": null,
       "estimated_tokens_millions": null,
       "price_per_1m_tokens": null,
@@ -626,6 +664,7 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": null,
       "usage_value_multiplier": 1.5,
       "estimated_tokens_millions": 400,
       "price_per_1m_tokens": 0.25,
@@ -673,6 +712,7 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": null,
       "usage_value_multiplier": 1.5,
       "estimated_tokens_millions": 800,
       "price_per_1m_tokens": 0.25,
@@ -720,6 +760,7 @@
         "window": "month",
         "note": "DeepSeek V4.1 Flash 每月额度"
       },
+      "usage_windows": null,
       "usage_value_multiplier": 1,
       "estimated_tokens_millions": 106.67,
       "price_per_1m_tokens": 0.375,
@@ -761,6 +802,7 @@
         "note": "官方无订阅套餐"
       },
       "model_usage": null,
+      "usage_windows": null,
       "usage_value_multiplier": null,
       "estimated_tokens_millions": null,
       "price_per_1m_tokens": 0.375,

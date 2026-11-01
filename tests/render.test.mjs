@@ -61,7 +61,11 @@ const document = {
       price: 10,
       currency: "USD",
       price_period: "month",
-      model_usage: { kind: "currency", amount: 100, currency: "USD", window: "month" }
+      model_usage: { kind: "currency", amount: 100, currency: "USD", window: "month" },
+      usage_windows: {
+        five_hour: { kind: "pct_of_monthly", value: 30 },
+        weekly: { kind: "pct_of_monthly", value: 60 }
+      }
     },
     {
       id: "commandcode_goat",
@@ -129,6 +133,8 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /Flash 每月 \$100 额度/);
   assert.match(html, /¥70 \/ 月/);
   assert.match(html, /4500 积分 \/ 月/);
+  assert.match(html, /5 小时最多用当月额度的 30%，每周最多 60%/);
+  assert.match(html, /5 小时 \$20，每周 \$50/);
   assert.match(html, /5 小时/);
   assert.match(html, /three-plans-70-yuan-deepseek-tokens-20261030/);
   assert.match(html, /FAQPage/);
@@ -163,6 +169,7 @@ test("renders a full English page with hreflang and localized promos", () => {
   assert.match(html, /≈3\.3B/);
   assert.match(html, /\$100 of Flash usage per month/);
   assert.match(html, /4,500 credits \/ month/);
+  assert.match(html, /30% of the monthly limit per 5 hours; 60% per week/);
   assert.match(html, /WorkBuddy invite registration \(sponsored link\)/);
   assert.match(html, /Get 2,000 credits with this invite/);
   assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);

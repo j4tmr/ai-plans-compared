@@ -85,6 +85,7 @@ export function normalizePlan(rawPlan, seed, officialModel, { checkedAt, fx, sta
     per: rawPlan.per ?? "account",
     included_usage: rawPlan.included_usage ?? null,
     model_usage: rawPlan.model_usage ?? null,
+    usage_windows: rawPlan.usage_windows ?? null,
     usage_value_multiplier: usageMultiplier == null ? null : round(usageMultiplier, 3),
     estimated_tokens_millions: calculated?.estimated_tokens_millions == null ? null : round(calculated.estimated_tokens_millions, 2),
     price_per_1m_tokens: calculated?.price_per_1m_tokens == null ? null : round(calculated.price_per_1m_tokens, 6),
