@@ -95,6 +95,8 @@ test("renders the simplified 70-yuan comparison and SEO tags", () => {
   assert.match(html, /FAQPage/);
   assert.match(html, /70 元 DeepSeek Flash 套餐 token 对比/);
   assert.match(html, /www\.4tmr\.com\/r\/WvmW4NzF/);
+  assert.match(html, /www\.workbuddy\.cn\/events\/invite\?inviteCode=6ueawbhr4/);
+  assert.match(html, /WorkBuddy 邀请注册，领 2000 积分/);
   assert.match(html, /rel="nofollow sponsored noopener"/);
   assert.match(html, /social\.png/);
   assert.match(html, /og:image:width" content="1200"/);

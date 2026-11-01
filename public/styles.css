@@ -196,6 +196,9 @@ details p { margin: .7rem 0 0; color: var(--muted); }
 }
 .promo a { display: block; min-width: 0; }
 .promo img { display: block; width: min(820px, calc(100vw - 110px)); height: auto; }
+.promo-workbuddy { padding: .5rem 0; background: #e8faf3; }
+.promo-workbuddy-link { color: #075e45; font-weight: 650; text-decoration: none; }
+.promo-workbuddy-link:hover { text-decoration: underline; text-underline-offset: .2em; }
 
 footer { padding: 3rem 0 3.5rem; border-top: 1px solid var(--line); background: rgba(255,255,255,.6); }
 footer p { margin: .3rem 0; color: var(--muted); }
@@ -214,4 +217,5 @@ footer p { margin: .3rem 0; color: var(--muted); }
   .section { padding: 3rem 0; }
   table { min-width: 680px; }
   th, td { padding: .8rem; }
+  .promo-inner { flex-wrap: wrap; }
 }
