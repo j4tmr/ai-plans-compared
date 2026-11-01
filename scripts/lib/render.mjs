@@ -53,7 +53,7 @@ const faqItems = () => [
   },
   {
     q: "这些 token 数是官方数字吗？",
-    a: "不是。官方只给美元额度或积分，token 数是按你自己 2026-10-14 至 10-30 的实际用量、缓存命中率和官方单价估算出来的。"
+    a: "不是。官方只给美元额度或积分，token 数是按作者 2026-10-14 至 10-30 的实测用量、缓存命中率和官方单价估算出来的。"
   }
 ];
 
@@ -108,11 +108,11 @@ export function renderIndex({ config, origin }) {
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:url" content="${escapeHtml(siteUrl)}">
   <meta property="og:locale" content="zh_CN">
-  <meta property="og:image" content="${escapeHtml(origin)}/social.svg">
+  <meta property="og:image" content="${escapeHtml(origin)}/social.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(title)}">
   <meta name="twitter:description" content="${escapeHtml(description)}">
-  <meta name="twitter:image" content="${escapeHtml(origin)}/social.svg">
+  <meta name="twitter:image" content="${escapeHtml(origin)}/social.png">
   <link rel="stylesheet" href="styles.css">
   ${jsonLd(config)}
 </head>
@@ -137,6 +137,7 @@ export function renderIndex({ config, origin }) {
           只比三家：<strong>OpenCode Go</strong>、<strong>Command Code GOAT</strong>、<strong>WorkBuddy 标准版</strong>。
           看大概 token 数，也看 5 小时 / 每周限额会在哪里撞墙。
         </p>
+        <p class="muted">数据截至 2026-10-30，官方调价后这里不会自动跟着变，下单前以各平台官方页为准。</p>
         <div class="cards">
           ${focusPlans
             .map(
@@ -156,7 +157,7 @@ export function renderIndex({ config, origin }) {
       <div class="shell">
         <div class="section-head">
           <h2>同样 70 元，大概能跑多少 token</h2>
-          <p>按你 2026-10-14 至 10-30 的实际用量和缓存命中率估算，单位约等于“含缓存 token”。</p>
+          <p>按作者 2026-10-14 至 10-30 的实测用量和缓存命中率估算，单位约等于“含缓存 token”。</p>
         </div>
         <div class="table-wrap" role="region" aria-label="70 元 DeepSeek Flash 套餐 token 对比" tabindex="0">
           <table>

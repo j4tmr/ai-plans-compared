@@ -2,8 +2,8 @@ name: Update prices
 
 on:
   schedule:
-    # Every 6 hours: 00:15, 06:15, 12:15 and 18:15 UTC.
-    - cron: "15 */6 * * *"
+    # Daily at 01:15 UTC (09:15 Beijing time).
+    - cron: "15 1 * * *"
   workflow_dispatch:
 
 permissions:
