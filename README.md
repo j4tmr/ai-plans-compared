@@ -23,8 +23,8 @@ The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token
 
 | 套餐 | 月费 | 官方额度 | 大概 token | 撞墙点 |
 | --- | ---: | --- | ---: | --- |
-| OpenCode Go | $10 | Flash 每月 $80 | 约 33 亿（含缓存） | 5 小时最多用当月额度 20%，每周最多 50% |
-| Command Code GOAT | $10 | Flash 每月 $80（采样期 $60） | 约 31 亿（含缓存） | 5 小时 $20，每周 $50 |
+| OpenCode Go | $10 | Flash 每月 $100 | 约 33 亿（含缓存） | 5 小时最多用当月额度 20%，每周最多 50% |
+| Command Code GOAT | $10 | Flash 每月 $100 | 约 31 亿（含缓存） | 5 小时 $20，每周 $50 |
 | WorkBuddy 标准版 | ¥70 | 4000 积分 / 月 | 约 24 亿（含缓存） | 积分用完为止 |
 
 ## 数字怎么来的
@@ -32,7 +32,7 @@ The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token
 - 数据来自 Magpie：2026-10-14 至 10-30，三家共 121,105 次成功调用。
 - 按真实缓存命中率估算：OpenCode 93.09%、Command Code 92.40%、WorkBuddy 96.36%。
 - 官方单价：输入 $0.15、输出 $0.60、缓存读取 $0.003 / 1M tokens；忙时价格翻倍。
-- 月额度和 5 小时 / 周限额为 2026-10-30 官方页快照。
+- 月额度每日从官方页抓取；5 小时 / 周限额为 2026-10-30 官方页快照。
 - 更完整的采样和计算过程见原文。
 
 ## 说明

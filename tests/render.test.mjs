@@ -55,6 +55,24 @@ const document = {
       rank_by_estimated_cost: 2
     },
     {
+      id: "opencode_go",
+      vendor: "OpenCode",
+      name: "Go",
+      price: 10,
+      currency: "USD",
+      price_period: "month",
+      model_usage: { kind: "currency", amount: 100, currency: "USD", window: "month" }
+    },
+    {
+      id: "commandcode_goat",
+      vendor: "Command Code",
+      name: "GOAT",
+      price: 10,
+      currency: "USD",
+      price_period: "month",
+      model_usage: { kind: "currency", amount: 100, currency: "USD", window: "month" }
+    },
+    {
       id: "deepseek_official_api",
       vendor: "DeepSeek",
       name: "官方 API 按量计费",
@@ -99,6 +117,7 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /结论：同样约 70 元/);
   assert.match(html, /Command Code GOAT/);
   assert.match(html, /约 33 亿/);
+  assert.match(html, /Flash 每月 \$100 额度/);
   assert.match(html, /5 小时/);
   assert.match(html, /three-plans-70-yuan-deepseek-tokens-20261030/);
   assert.match(html, /FAQPage/);
@@ -131,6 +150,7 @@ test("renders a full English page with hreflang and localized promos", () => {
   assert.match(html, /What is the cheapest DeepSeek plan/);
   assert.match(html, /Bottom line: at about \$10\/month/);
   assert.match(html, /≈3\.3B/);
+  assert.match(html, /\$100 of Flash usage per month/);
   assert.match(html, /WorkBuddy invite registration \(sponsored link\)/);
   assert.match(html, /Get 2,000 credits with this invite/);
   assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);

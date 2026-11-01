@@ -16,8 +16,9 @@ const focusPlans = {
   "zh-CN": [
     {
       name: "OpenCode Go",
+      planId: "opencode_go",
       price: "$10 / 月",
-      quota: "Flash 每月 $80 额度",
+      quota: "Flash 每月 $100 额度",
       tokens: "约 33 亿",
       tokensNote: "含缓存 token",
       limit: "5 小时最多用当月额度的 20%，每周最多 50%",
@@ -26,8 +27,9 @@ const focusPlans = {
     },
     {
       name: "Command Code GOAT",
+      planId: "commandcode_goat",
       price: "$10 / 月",
-      quota: "Flash 每月 $80（采样期 $60）",
+      quota: "Flash 每月 $100 额度",
       tokens: "约 31 亿",
       tokensNote: "含缓存 token",
       limit: "5 小时 $20，每周 $50",
@@ -36,6 +38,7 @@ const focusPlans = {
     },
     {
       name: "WorkBuddy 标准版",
+      planId: "workbuddy-standard",
       price: "¥70 / 月",
       quota: "4000 积分 / 月",
       tokens: "约 24 亿",
@@ -49,8 +52,9 @@ const focusPlans = {
   en: [
     {
       name: "OpenCode Go",
+      planId: "opencode_go",
       price: "$10 / mo",
-      quota: "$80 of Flash usage per month",
+      quota: "$100 of Flash usage per month",
       tokens: "≈3.3B",
       tokensNote: "including cached tokens",
       limit: "20% of the monthly quota per 5 hours; 50% per week",
@@ -59,8 +63,9 @@ const focusPlans = {
     },
     {
       name: "Command Code GOAT",
+      planId: "commandcode_goat",
       price: "$10 / mo",
-      quota: "$80/month for Flash ($60 during sampling)",
+      quota: "$100 of Flash usage per month",
       tokens: "≈3.1B",
       tokensNote: "including cached tokens",
       limit: "5-hour cap: $20; weekly cap: $50",
@@ -69,6 +74,7 @@ const focusPlans = {
     },
     {
       name: "WorkBuddy Standard",
+      planId: "workbuddy-standard",
       price: "¥70 / mo",
       quota: "4,000 credits / month",
       tokens: "≈2.4B",
@@ -161,7 +167,7 @@ const copyByLocale = {
       "样本：2026-10-14 至 10-30，三家一共 121,105 次成功调用。",
       "按真实缓存命中率估算：OpenCode 93.09%、Command Code 92.40%、WorkBuddy 96.36%。",
       "官方单价：输入 $0.15、输出 $0.60、缓存读取 $0.003 / 1M tokens；忙时价格翻倍。",
-      "月额度和 5 小时 / 周限额为 2026-10-30 官方页快照，之后可能调整。",
+      "月额度每日从官方页抓取；5 小时 / 周限额为 2026-10-30 官方页快照，之后可能调整。",
       `完整计算过程和采样明细见<a href="${ARTICLE_URL}" rel="noopener">原文</a>。`
     ],
     faqTitle: "常见问题",
@@ -218,7 +224,7 @@ const copyByLocale = {
       "Sample: 121,105 successful calls across all three providers, October 14-30, 2026.",
       "Estimated using measured cache-hit rates: OpenCode 93.09%, Command Code 92.40%, WorkBuddy 96.36%.",
       "Official DeepSeek prices: $0.15 input, $0.60 output, and $0.003 cached input per 1M tokens; peak-hour prices double.",
-      "Monthly quotas and 5-hour/weekly limits are snapshots from official pages on October 30, 2026 and may change.",
+      "Monthly quotas are refreshed daily from official pages; 5-hour/weekly limits are snapshots from October 30, 2026 and may change.",
       `See the <a href="${ARTICLE_URL}" rel="noopener">source article</a> (Chinese) for the full methodology and samples.`
     ],
     faqTitle: "Frequently asked questions",
@@ -263,6 +269,22 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
   const copy = copyByLocale[locale] ?? copyByLocale["zh-CN"];
   const plans = focusPlans[locale] ?? focusPlans["zh-CN"];
   const faqs = faqItems[locale] ?? faqItems["zh-CN"];
+  const dataPlans = new Map((document?.plans ?? []).map((plan) => [plan.id, plan]));
+  const displayPrice = (plan) => {
+    const dataPlan = plan.planId ? dataPlans.get(plan.planId) : undefined;
+    if (dataPlan?.price == null) return plan.price;
+    const symbol = dataPlan.currency === "CNY" ? "¥" : "$";
+    return `${symbol}${dataPlan.price} / ${locale === "en" ? "mo" : "月"}`;
+  };
+  const displayQuota = (plan) => {
+    const usage = (plan.planId ? dataPlans.get(plan.planId) : undefined)?.model_usage;
+    if (usage?.kind === "currency" && usage.currency === "USD" && usage.amount > 0) {
+      return locale === "en"
+        ? `$${usage.amount} of Flash usage per month`
+        : `Flash 每月 $${usage.amount} 额度`;
+    }
+    return plan.quota;
+  };
   const siteUrl = locale === "en" ? `${origin}/en/` : `${origin}/`;
   const zhUrl = `${origin}/`;
   const enUrl = `${origin}/en/`;
@@ -358,7 +380,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
           <article class="card${plan.invite ? " card-workbuddy" : ""}">
             <p class="eyebrow">${escapeHtml(plan.name)}</p>
             <p class="value">${escapeHtml(plan.tokens)}</p>
-            <p class="muted">${escapeHtml(plan.tokensNote)} · ${escapeHtml(plan.price)}</p>
+            <p class="muted">${escapeHtml(plan.tokensNote)} · ${escapeHtml(displayPrice(plan))}</p>
             ${
               plan.invite
                 ? `<a class="card-invite" href="${escapeHtml(WORKBUDDY_URL)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.workbuddyInviteAria)}">${escapeHtml(copy.workbuddyInvite)} <span aria-hidden="true">→</span></a>`
@@ -401,8 +423,8 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
                   (plan) => `
               <tr>
                 <td><strong>${escapeHtml(plan.name)}</strong></td>
-                <td>${escapeHtml(plan.price)}</td>
-                <td>${escapeHtml(plan.quota)}</td>
+                <td>${escapeHtml(displayPrice(plan))}</td>
+                <td>${escapeHtml(displayQuota(plan))}</td>
                 <td><strong>${escapeHtml(plan.tokens)}</strong> <span class="muted">${escapeHtml(plan.tokensNote)}</span></td>
                 <td>${escapeHtml(plan.cache)}</td>
               </tr>`
