@@ -4,6 +4,7 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 import {
+  render404,
   renderFeed,
   renderIndex,
   renderLlms,
@@ -45,4 +46,5 @@ await writeFile(path.join(publicDir, "feed.xml"), renderFeed(document, origin));
 await writeFile(path.join(publicDir, "robots.txt"), renderRobots(origin));
 await writeFile(path.join(publicDir, "llms.txt"), renderLlms(document, origin, config));
 await writeFile(path.join(publicDir, "manifest.webmanifest"), renderManifest(config));
+await writeFile(path.join(publicDir, "404.html"), render404({ origin, config }));
 await writeFile(path.join(publicDir, ".nojekyll"), "");
