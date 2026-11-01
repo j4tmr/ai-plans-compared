@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "cheapest-deepseek-plan",
   "updated_at": "2026-11-01T07:50:18.439Z",
-  "checked_at": "2026-11-01T07:50:18.439Z",
+  "checked_at": "2026-11-01T12:22:58.840Z",
   "focus_model": {
     "id": "deepseek-v4.1-flash",
     "official_api_name": "deepseek-flash",
@@ -50,7 +50,7 @@
       "name": "DeepSeek API 官方定价",
       "url": "https://api-docs.deepseek.com/quick_start/pricing/",
       "status": "ok",
-      "fetched_at": "2026-11-01T07:50:18.451Z",
+      "fetched_at": "2026-11-01T12:22:58.895Z",
       "plans_count": 0
     },
     {
@@ -59,7 +59,7 @@
       "name": "WorkBuddy 定价详情",
       "url": "https://www.workbuddy.cn/docs/workbuddy/Pricing",
       "status": "ok",
-      "fetched_at": "2026-11-01T07:50:18.619Z",
+      "fetched_at": "2026-11-01T12:22:59.321Z",
       "plans_count": 4
     },
     {
@@ -68,7 +68,7 @@
       "name": "OpenCode Go plan",
       "url": "https://opencode.ai/v2/docs/console/go",
       "status": "ok",
-      "fetched_at": "2026-11-01T07:50:18.823Z",
+      "fetched_at": "2026-11-01T12:23:01.288Z",
       "plans_count": 3
     },
     {
@@ -77,7 +77,7 @@
       "name": "Command Code Pricing & Limits",
       "url": "https://commandcode.ai/docs/resources/pricing-limits",
       "status": "ok",
-      "fetched_at": "2026-11-01T07:50:24.192Z",
+      "fetched_at": "2026-11-01T12:23:01.446Z",
       "plans_count": 7
     }
   ],
