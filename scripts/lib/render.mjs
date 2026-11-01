@@ -277,11 +277,18 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
     return `${symbol}${dataPlan.price} / ${locale === "en" ? "mo" : "月"}`;
   };
   const displayQuota = (plan) => {
-    const usage = (plan.planId ? dataPlans.get(plan.planId) : undefined)?.model_usage;
+    const dataPlan = plan.planId ? dataPlans.get(plan.planId) : undefined;
+    const usage = dataPlan?.model_usage;
     if (usage?.kind === "currency" && usage.currency === "USD" && usage.amount > 0) {
       return locale === "en"
         ? `$${usage.amount} of Flash usage per month`
         : `Flash 每月 $${usage.amount} 额度`;
+    }
+    const credits = dataPlan?.included_usage;
+    if (credits?.kind === "credits" && credits.amount > 0) {
+      return locale === "en"
+        ? `${credits.amount.toLocaleString("en-US")} credits / month`
+        : `${credits.amount} 积分 / 月`;
     }
     return plan.quota;
   };
@@ -573,4 +580,45 @@ export function renderManifest(config) {
     null,
     2
   );
+}
+
+export function render404({ origin, config }) {
+  const copy = copyByLocale["zh-CN"];
+  return `<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>404 · 页面不存在 | ${escapeHtml(copy.siteName)}</title>
+  <link rel="stylesheet" href="${escapeHtml(origin)}/styles.css">
+  <link rel="icon" href="${escapeHtml(origin)}/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="${escapeHtml(origin)}/manifest.webmanifest">
+</head>
+<body>
+  <header>
+    <div class="shell header-row">
+      <a class="brand" href="${escapeHtml(origin)}/" hreflang="zh-CN">${escapeHtml(copy.siteName)}</a>
+      <nav aria-label="站内导航">
+        <a class="lang-switch" href="${escapeHtml(origin)}/en/" hreflang="en" lang="en">English</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="shell">
+        <p class="eyebrow">404</p>
+        <h1>页面不存在</h1>
+        <p class="lede">你要找的页面不在这里。可能链接已经过期，或者地址拼错了。</p>
+        <p><a href="${escapeHtml(origin)}/">返回首页</a> · <a href="${escapeHtml(origin)}/en/">English</a></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="shell">
+      <p><a href="https://github.com/${escapeHtml(config.repository)}">GitHub</a> · MIT</p>
+    </div>
+  </footer>
+</body>
+</html>`;
 }

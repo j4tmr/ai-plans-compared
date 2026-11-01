@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 import { fetchText } from "./lib/fetch-source.mjs";
 import { fetchUsdCny } from "./lib/fx.mjs";
+import { renderReadmeTable } from "./lib/readme-table.mjs";
 import { normalizePlan } from "./lib/plans.mjs";
 import { SOURCE as deepseekSource, parseDeepSeek } from "./lib/sources/deepseek.mjs";
 import { SOURCE as workbuddySource, parseWorkBuddy } from "./lib/sources/workbuddy.mjs";
@@ -91,21 +92,6 @@ function buildRecommendations(plans, officialModel) {
       balanced_off_peak_usd_per_1m_tokens: (officialModel.pricing.input_cache_miss.off_peak + officialModel.pricing.output.off_peak) / 2
     }
   };
-}
-
-function renderReadmeTable(document) {
-  const rows = document.plans
-    .filter((plan) => plan.available && plan.price != null)
-    .sort((a, b) => (a.rank_by_estimated_cost ?? 999) - (b.rank_by_estimated_cost ?? 999))
-    .map(
-      (plan) =>
-        `| ${plan.rank_by_estimated_cost ?? "—"} | ${plan.vendor} ${plan.name} | ${plan.currency === "CNY" ? "¥" : "$"}${plan.price} | ${plan.estimated_tokens_millions ?? "—"}M | ${plan.price_per_1m_tokens_cny ?? "—"} | ${plan.confidence ?? "—"} |`
-    );
-  return [
-    "| # | 平台 / 套餐 | 月费 | 估算额度 | 估算 ¥/1M tokens | 置信度 |",
-    "| ---: | --- | ---: | ---: | ---: | --- |",
-    ...rows
-  ].join("\n");
 }
 
 async function updateReadme(document) {

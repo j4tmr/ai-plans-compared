@@ -21,11 +21,13 @@ The cheapest DeepSeek plans around **$10/month**: estimated DeepSeek Flash token
 
 ## 对比
 
+<!-- pricing:start -->
 | 套餐 | 月费 | 官方额度 | 大概 token | 撞墙点 |
 | --- | ---: | --- | ---: | --- |
 | OpenCode Go | $10 | Flash 每月 $100 | 约 33 亿（含缓存） | 5 小时最多用当月额度 20%，每周最多 50% |
 | Command Code GOAT | $10 | Flash 每月 $100 | 约 31 亿（含缓存） | 5 小时 $20，每周 $50 |
 | WorkBuddy 标准版 | ¥70 | 4000 积分 / 月 | 约 24 亿（含缓存） | 积分用完为止 |
+<!-- pricing:end -->
 
 ## 数字怎么来的
 

@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { renderIndex, renderSitemap } from "../scripts/lib/render.mjs";
+import { render404, renderIndex, renderSitemap } from "../scripts/lib/render.mjs";
 
 const document = {
   schema_version: 1,
@@ -73,6 +73,15 @@ const document = {
       model_usage: { kind: "currency", amount: 100, currency: "USD", window: "month" }
     },
     {
+      id: "workbuddy-standard",
+      vendor: "WorkBuddy",
+      name: "标准版",
+      price: 70,
+      currency: "CNY",
+      price_period: "month",
+      included_usage: { kind: "credits", amount: 4500, window: "month" }
+    },
+    {
       id: "deepseek_official_api",
       vendor: "DeepSeek",
       name: "官方 API 按量计费",
@@ -118,6 +127,8 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /Command Code GOAT/);
   assert.match(html, /约 33 亿/);
   assert.match(html, /Flash 每月 \$100 额度/);
+  assert.match(html, /¥70 \/ 月/);
+  assert.match(html, /4500 积分 \/ 月/);
   assert.match(html, /5 小时/);
   assert.match(html, /three-plans-70-yuan-deepseek-tokens-20261030/);
   assert.match(html, /FAQPage/);
@@ -151,6 +162,7 @@ test("renders a full English page with hreflang and localized promos", () => {
   assert.match(html, /Bottom line: at about \$10\/month/);
   assert.match(html, /≈3\.3B/);
   assert.match(html, /\$100 of Flash usage per month/);
+  assert.match(html, /4,500 credits \/ month/);
   assert.match(html, /WorkBuddy invite registration \(sponsored link\)/);
   assert.match(html, /Get 2,000 credits with this invite/);
   assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);
@@ -168,4 +180,13 @@ test("sitemap includes both languages with xhtml alternates", () => {
   assert.match(sitemap, /<loc>https:\/\/example\.com\/en\/<\/loc>/);
   assert.match(sitemap, /hreflang="zh-CN" href="https:\/\/example\.com\/"/);
   assert.match(sitemap, /hreflang="en" href="https:\/\/example\.com\/en\/"/);
+});
+
+test("renders a noindex 404 page with home links", () => {
+  const html = render404({ origin: "https://example.com", config });
+  assert.match(html, /<meta name="robots" content="noindex">/);
+  assert.match(html, /<title>404 · 页面不存在 \| AI 套餐对比<\/title>/);
+  assert.match(html, /href="https:\/\/example\.com\/styles\.css"/);
+  assert.match(html, /href="https:\/\/example\.com\/" hreflang="zh-CN">AI 套餐对比<\/a>/);
+  assert.match(html, /href="https:\/\/example\.com\/en\/">English<\/a>/);
 });
