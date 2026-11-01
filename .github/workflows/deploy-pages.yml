@@ -29,6 +29,7 @@ jobs:
       - run: npm run build
         env:
           SITE_ORIGIN: ${{ steps.pages.outputs.base_url }}
+          WORKBUDDY_INVITE_CODE: ${{ secrets.WORKBUDDY_INVITE_CODE }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: public

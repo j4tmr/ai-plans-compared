@@ -7,8 +7,9 @@ const escapeHtml = (value) =>
     .replace(/'/g, "&#39;");
 
 const ARTICLE_URL = "https://www.4qin.com/p/three-plans-70-yuan-deepseek-tokens-20261030";
-const LMVPN_URL = "https://www.4tmr.com/r/WvmW4NzF";
-const WORKBUDDY_URL = "https://www.workbuddy.cn/events/invite?inviteCode=6ueawbhr4";
+const LMVPN_URL = "https://lmvpn.4tmr.com/";
+const API88_URL = "https://88api.ai/sign-up?aff=dlVM";
+const WORKBUDDY_FALLBACK_URL = "https://www.workbuddy.cn/";
 
 // 来自《70 元 DeepSeek 三套餐对比》原文的实测结论。
 const focusPlans = {
@@ -131,6 +132,9 @@ const copyByLocale = {
     promoAria: "推广：lmVPN",
     promoLinkAria: "了解 lmVPN（推广链接）",
     promoAlt: "lmVPN 蓝莓加速器：免费试用，日套餐 3 元起",
+    promo88Aria: "推广：88API Claude 中转站",
+    promo88LinkAria: "了解 88API（推广链接）",
+    promo88Alt: "88API Claude 中转站：Opus / Sonnet / Haiku 全系模型，注册送测试额度",
     navAria: "站内导航",
     nav: [
       ["#plans", "token 对比"],
@@ -185,6 +189,9 @@ const copyByLocale = {
     promoAria: "Advertisement: lmVPN",
     promoLinkAria: "Learn about lmVPN (sponsored link)",
     promoAlt: "lmVPN: free trial and a daily plan from 3 yuan",
+    promo88Aria: "Advertisement: 88API Claude API relay",
+    promo88LinkAria: "Learn about 88API (sponsored link)",
+    promo88Alt: "88API Claude API relay: Opus, Sonnet, and Haiku models with sign-up bonus credits",
     navAria: "Page navigation",
     nav: [
       ["#plans", "Token comparison"],
@@ -252,7 +259,7 @@ function jsonLd({ config, copy, faqs, plans, siteUrl }) {
     .join("\n");
 }
 
-export function renderIndex({ config, origin, locale = "zh-CN" }) {
+export function renderIndex({ config, origin, locale = "zh-CN", workbuddyUrl = WORKBUDDY_FALLBACK_URL }) {
   const copy = copyByLocale[locale] ?? copyByLocale["zh-CN"];
   const plans = focusPlans[locale] ?? focusPlans["zh-CN"];
   const faqs = faqItems[locale] ?? faqItems["zh-CN"];
@@ -341,7 +348,7 @@ export function renderIndex({ config, origin, locale = "zh-CN" }) {
             <p class="muted">${escapeHtml(plan.tokensNote)} · ${escapeHtml(plan.price)}</p>
             ${
               plan.invite
-                ? `<a class="card-invite" href="${escapeHtml(WORKBUDDY_URL)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.workbuddyInviteAria)}">${escapeHtml(copy.workbuddyInvite)} <span aria-hidden="true">→</span></a>`
+                ? `<a class="card-invite" href="${escapeHtml(workbuddyUrl)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.workbuddyInviteAria)}">${escapeHtml(copy.workbuddyInvite)} <span aria-hidden="true">→</span></a>`
                 : ""
             }
           </article>`
@@ -350,6 +357,18 @@ export function renderIndex({ config, origin, locale = "zh-CN" }) {
         </div>
       </div>
     </section>
+
+    <aside class="promo promo-inline" aria-label="${escapeHtml(copy.promo88Aria)}">
+      <div class="shell promo-inner">
+        <span class="promo-label">${escapeHtml(copy.promoAdLabel)}</span>
+        <a href="${escapeHtml(API88_URL)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.promo88LinkAria)}">
+          <picture>
+            <source media="(max-width: 640px)" srcset="${copy.assetBase}88api-banner-mobile.svg">
+            <img src="${copy.assetBase}88api-banner.svg" alt="${escapeHtml(copy.promo88Alt)}" width="1200" height="200" loading="lazy" decoding="async">
+          </picture>
+        </a>
+      </div>
+    </aside>
 
     <section id="plans" class="section">
       <div class="shell">

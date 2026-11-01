@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="280" viewBox="0 0 800 280" role="img" aria-labelledby="title desc">
+  <title id="title">88API Claude 中转站：Opus / Sonnet / Haiku 全系模型，注册送测试额度</title>
+  <desc id="desc">Mobile 88API promotional banner for a Claude relay with Claude Code support and sign-up bonus credits.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#251410"/>
+      <stop offset=".58" stop-color="#382015"/>
+      <stop offset="1" stop-color="#4b2b1c"/>
+    </linearGradient>
+    <linearGradient id="clay" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e8825e"/>
+      <stop offset="1" stop-color="#c4532f"/>
+    </linearGradient>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.15" fill="#fff" opacity=".08"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="280" rx="22" fill="url(#bg)"/>
+  <rect width="800" height="280" rx="22" fill="url(#dots)"/>
+  <circle cx="742" cy="0" r="150" fill="#e06a3f" opacity=".14"/>
+
+  <g transform="translate(32 32)">
+    <rect width="76" height="76" rx="20" fill="url(#clay)"/>
+    <g stroke="#fff" stroke-width="6" stroke-linecap="round">
+      <path d="M38 21v34"/>
+      <path d="M21 38h34"/>
+      <path d="M27 27l22 22"/>
+      <path d="M49 27l-22 22"/>
+    </g>
+  </g>
+  <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+    <text x="132" y="63" font-size="34" font-weight="800" letter-spacing="-.5" fill="#fff">88API</text>
+    <text x="252" y="60" font-size="19" font-weight="600" fill="#f0a582">Claude 中转站</text>
+    <text x="132" y="95" font-size="17" fill="#f2ddcd">Claude Code 直连 · Opus / Sonnet / Haiku 全系可用</text>
+  </g>
+
+  <g transform="translate(32 158)">
+    <rect width="736" height="82" rx="41" fill="url(#clay)"/>
+    <text x="30" y="32" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="16" font-weight="600" fill="#ffd9c4">新人福利</text>
+    <text x="30" y="64" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="27" font-weight="800" fill="#fff">注册送测试额度</text>
+    <text x="540" y="52" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="22" font-weight="700" fill="#fff">立即注册</text>
+    <path d="M664 41h32m0 0-13-13m13 13-13 13" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

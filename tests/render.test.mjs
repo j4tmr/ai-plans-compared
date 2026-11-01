@@ -84,7 +84,12 @@ const config = {
 };
 
 test("renders the Chinese page with bilingual SEO and sponsored links", () => {
-  const html = renderIndex({ document, config, origin: "https://example.com" });
+  const html = renderIndex({
+    document,
+    config,
+    origin: "https://example.com",
+    workbuddyUrl: "https://www.workbuddy.cn/events/invite?inviteCode=testcode1"
+  });
   assert.match(html, /<html lang="zh-CN">/);
   assert.match(html, /<link rel="canonical" href="https:\/\/example\.com\/">/);
   assert.match(html, /<link rel="alternate" hreflang="zh-CN" href="https:\/\/example\.com\/">/);
@@ -100,11 +105,15 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /three-plans-70-yuan-deepseek-tokens-20261030/);
   assert.match(html, /FAQPage/);
   assert.match(html, /70 元 DeepSeek Flash 套餐 token 对比/);
-  assert.match(html, /www\.4tmr\.com\/r\/WvmW4NzF/);
+  assert.match(html, /href="https:\/\/lmvpn\.4tmr\.com\/"/);
   assert.match(html, /lmvpn-banner\.svg/);
   assert.match(html, /lmvpn-banner-mobile\.svg/);
   assert.doesNotMatch(html, /lmvpn-banner\.gif/);
-  assert.match(html, /www\.workbuddy\.cn\/events\/invite\?inviteCode=6ueawbhr4/);
+  assert.match(html, /www\.workbuddy\.cn\/events\/invite\?inviteCode=testcode1/);
+  assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);
+  assert.match(html, /88api-banner\.svg/);
+  assert.match(html, /88api-banner-mobile\.svg/);
+  assert.match(html, /Claude 中转站/);
   assert.match(html, /WorkBuddy 邀请注册（推广链接）/);
   assert.match(html, /邀请注册领 2000 积分/);
   assert.match(html, /rel="nofollow sponsored noopener"/);
@@ -124,6 +133,8 @@ test("renders a full English page with hreflang and localized promos", () => {
   assert.match(html, /≈3\.3B/);
   assert.match(html, /WorkBuddy invite registration \(sponsored link\)/);
   assert.match(html, /Get 2,000 credits with this invite/);
+  assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);
+  assert.match(html, /88API Claude API relay/);
   assert.match(html, /href="\.\.\/styles\.css"/);
   assert.match(html, /href="\.\.\/" hreflang="zh-CN" lang="zh-CN">中文/);
   assert.match(html, /"inLanguage":"en"/);
