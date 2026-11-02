@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="280" viewBox="0 0 800 280" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="160" viewBox="0 0 800 160" role="img" aria-labelledby="title desc">
   <title id="title">lmVPN 蓝莓加速器：免费试用，日套餐 3 元起</title>
-  <desc id="desc">Mobile lmVPN promotional banner with a daily plan starting at 3 yuan and a free trial.</desc>
+  <desc id="desc">Compact mobile lmVPN promotional banner with a daily plan starting at 3 yuan and a free trial.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#172452"/>
@@ -11,30 +11,30 @@
       <stop offset="0" stop-color="#ffac2f"/>
       <stop offset="1" stop-color="#ff6a1a"/>
     </linearGradient>
-    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.15" fill="#fff" opacity=".1"/>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#fff" opacity=".1"/>
     </pattern>
   </defs>
-  <rect width="800" height="280" rx="22" fill="url(#bg)"/>
-  <rect width="800" height="280" rx="22" fill="url(#dots)"/>
-  <circle cx="742" cy="0" r="150" fill="#ff7a1a" opacity=".12"/>
 
-  <g transform="translate(32 32)">
-    <rect width="76" height="76" rx="20" fill="url(#orange)"/>
-    <path d="M21 40 54 23 44 59 38 45Z" fill="#fff"/>
-    <path d="m38 45 6 14 10-36-26 22Z" fill="#ffe1c9" opacity=".8"/>
+  <rect width="800" height="160" rx="18" fill="url(#bg)"/>
+  <rect width="800" height="160" rx="18" fill="url(#dots)"/>
+  <circle cx="748" cy="-18" r="108" fill="#ff7a1a" opacity=".12"/>
+
+  <g transform="translate(20 54)">
+    <rect width="52" height="52" rx="13" fill="url(#orange)"/>
+    <path d="M14 28 37 15 30 40 25 31Z" fill="#fff"/>
+    <path d="m25 31 5 9 7-25-19 13Z" fill="#ffe1c9" opacity=".8"/>
   </g>
+
   <g font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" fill="#fff">
-    <text x="132" y="63" font-size="34" font-weight="800" letter-spacing="-.5">lmVPN</text>
-    <text x="260" y="60" font-size="19" font-weight="600" fill="#ffc07a">蓝莓加速器</text>
-    <text x="132" y="95" font-size="18" fill="#d6def9">低价、高速、稳定、安全 · 免费试用</text>
+    <text x="88" y="70" font-size="26" font-weight="800" letter-spacing="-.4">lmVPN</text>
+    <text x="176" y="68" font-size="14" font-weight="600" fill="#ffc07a">蓝莓加速器</text>
+    <text x="88" y="102" font-size="14.5" fill="#d6def9">低价、高速、稳定、安全 · 免费试用</text>
   </g>
 
-  <g transform="translate(32 158)">
-    <rect width="736" height="82" rx="41" fill="url(#orange)"/>
-    <text x="30" y="32" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="16" font-weight="600" fill="#542400">日套餐</text>
-    <text x="30" y="64" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="29" font-weight="800" fill="#3a1800">¥3 起</text>
-    <text x="210" y="52" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="22" font-weight="700" fill="#fff">立即了解</text>
-    <path d="M676 41h32m0 0-13-13m13 13-13 13" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(484 48)">
+    <rect width="296" height="64" rx="32" fill="url(#orange)"/>
+    <text x="24" y="41" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif" font-size="23" font-weight="800" fill="#3a1800">日套餐 ¥3 起</text>
+    <path d="M252 32h20m0 0-8-8m8 8-8 8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 </svg>
