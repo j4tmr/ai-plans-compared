@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import { render404, renderIndex, renderSitemap } from "../scripts/lib/render.mjs";
 
@@ -142,11 +143,13 @@ test("renders the Chinese page with bilingual SEO and sponsored links", () => {
   assert.match(html, /href="https:\/\/lmvpn\.4tmr\.com\/"/);
   assert.match(html, /lmvpn-banner\.svg/);
   assert.match(html, /lmvpn-banner-mobile\.svg/);
+  assert.match(html, /lmvpn-banner\.svg"[^>]+width="1200" height="100"/);
   assert.doesNotMatch(html, /lmvpn-banner\.gif/);
   assert.match(html, /www\.workbuddy\.cn\/events\/invite\?inviteCode=[A-Za-z0-9_-]{4,64}/);
   assert.match(html, /88api\.ai\/sign-up\?aff=dlVM/);
   assert.match(html, /88api-banner\.svg/);
   assert.match(html, /88api-banner-mobile\.svg/);
+  assert.match(html, /88api-banner\.svg"[^>]+width="1200" height="100"/);
   assert.match(html, /Claude 中转站/);
   assert.match(html, /WorkBuddy 邀请注册（推广链接）/);
   assert.match(html, /邀请注册领 2000 积分/);
@@ -178,6 +181,20 @@ test("renders a full English page with hreflang and localized promos", () => {
   assert.match(html, /href="\.\.\/" hreflang="zh-CN" lang="zh-CN">中文/);
   assert.match(html, /"inLanguage":"en"/);
   assert.match(html, /og:locale" content="en_US"/);
+});
+
+test("keeps promotional banner assets compact", async () => {
+  const banners = [
+    ["88api-banner.svg", 1200, 100],
+    ["88api-banner-mobile.svg", 800, 160],
+    ["lmvpn-banner.svg", 1200, 100],
+    ["lmvpn-banner-mobile.svg", 800, 160]
+  ];
+
+  for (const [file, width, height] of banners) {
+    const svg = await readFile(new URL(`../public/${file}`, import.meta.url), "utf8");
+    assert.match(svg, new RegExp(`<svg[^>]+width="${width}" height="${height}"`));
+  }
 });
 
 test("sitemap includes both languages with xhtml alternates", () => {

@@ -367,7 +367,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
       <a href="${escapeHtml(LMVPN_URL)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.promoLinkAria)}">
         <picture>
           <source media="(max-width: 640px)" srcset="${copy.assetBase}lmvpn-banner-mobile.svg">
-          <img src="${copy.assetBase}lmvpn-banner.svg" alt="${escapeHtml(copy.promoAlt)}" width="1200" height="200" loading="lazy" decoding="async">
+          <img src="${copy.assetBase}lmvpn-banner.svg" alt="${escapeHtml(copy.promoAlt)}" width="1200" height="100" loading="lazy" decoding="async">
         </picture>
       </a>
     </div>
@@ -415,7 +415,7 @@ export function renderIndex({ config, document, origin, locale = "zh-CN" }) {
         <a href="${escapeHtml(API88_URL)}" target="_blank" rel="nofollow sponsored noopener" aria-label="${escapeHtml(copy.promo88LinkAria)}">
           <picture>
             <source media="(max-width: 640px)" srcset="${copy.assetBase}88api-banner-mobile.svg">
-            <img src="${copy.assetBase}88api-banner.svg" alt="${escapeHtml(copy.promo88Alt)}" width="1200" height="200" loading="lazy" decoding="async">
+            <img src="${copy.assetBase}88api-banner.svg" alt="${escapeHtml(copy.promo88Alt)}" width="1200" height="100" loading="lazy" decoding="async">
           </picture>
         </a>
       </div>
